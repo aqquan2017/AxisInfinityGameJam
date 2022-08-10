@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.AxieInfinityGamejam.iml
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+# Datasource local storage ignored files
+/../../../../../../../:\OneDrive\Unity\AxieInfinityGamejam\.idea\.idea.AxieInfinityGamejam\.idea/dataSources/
+/dataSources.local.xml
