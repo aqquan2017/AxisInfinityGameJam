@@ -51,4 +51,14 @@ public class GameLogic : MonoBehaviour
                 }
             }
         }
+
+        [ContextMenu("TEST ANIM")]
+        public void TestAnimation()
+        {
+            List<string> animationList = Mixer.Builder.axieMixerMaterials.GetMixerStuff(AxieFormType.Normal).GetAnimatioNames();
+            foreach (var animName in animationList)
+            {
+                Debug.Log(animName);
+            }
+        }
     }

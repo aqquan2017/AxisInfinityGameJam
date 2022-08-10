@@ -12,7 +12,6 @@ public class AppController : MonoBehaviour
         GameplayController.Instance.Init();
         TimerManager.Instance.Init();
         DataManager.Instance.Init();
-        UnityAndroidVibrator.Instance.Init();
     }
 
     

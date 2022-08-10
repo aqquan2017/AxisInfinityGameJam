@@ -10,7 +10,7 @@ namespace Game
         private SkeletonAnimation skeletonAnimation;
 
         [SerializeField] private bool _flipX = false;
-        public bool flipX
+        public bool FlipX
         {
             get
             {
