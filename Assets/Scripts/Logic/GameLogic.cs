@@ -56,9 +56,12 @@ public class GameLogic : MonoBehaviour
         public void TestAnimation()
         {
             List<string> animationList = Mixer.Builder.axieMixerMaterials.GetMixerStuff(AxieFormType.Normal).GetAnimatioNames();
-            foreach (var animName in animationList)
-            {
-                Debug.Log(animName);
-            }
+            string animationName = animationList[Random.Range(0, animationList.Count)];
+            _birdFigure.SetAnimation(animationName);
+            Debug.Log(animationName);
+            // foreach (var animName in animationList)
+            // {
+            //     Debug.Log(animName);
+            // }
         }
     }
