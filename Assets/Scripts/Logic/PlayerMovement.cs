@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
             SoundManager.Instance.Play(Sounds.UI_POPUP);
             
-            CheckHurtItSelf();
+            
 
             //flip character
             if (direction == Vector2.right)
@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _axieFigure.FlipX = false;
             }
+            
 
             Action OnDoLater = null;
             if (CanMove(direction, ref OnDoLater))
@@ -68,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
                     _canMove = true;
                 });
                 _axieFigure.SetAnimation("action/move-forward", 2f, false);
-                
                 return;
             }
             
@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
                 _shakeFeedback?.PlayFeedbacks();
                 
                 _playerTurnLogic.DecreaseTurn();
+                CheckHurtItSelf();
                 return;
             }
         }
