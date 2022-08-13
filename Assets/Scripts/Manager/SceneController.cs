@@ -33,8 +33,9 @@ public class SceneController : BaseManager<SceneController>
             LogSystem.LogError("SCENE LOAD OUT OF BOUND");
             return;
         }
-
+        
         _currentScene = id;
+        OnChangeScene?.Invoke(_currentScene);
         SceneManager.LoadScene(_currentScene);
     }
 

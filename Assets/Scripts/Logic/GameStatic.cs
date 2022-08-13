@@ -19,6 +19,11 @@ public class GameStatic : BaseManager<GameStatic>
         CircleTransition.Instance.OnEndFadeIn += () => SceneController.Instance.NextScene();
     }
 
+    public void OnLoseGame()
+    {
+        
+    }
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);        

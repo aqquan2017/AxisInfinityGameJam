@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameLogic : MonoBehaviour
+public class LoadAxie : MonoBehaviour
     {
         [SerializeField] AxieFigure _birdFigure;
 

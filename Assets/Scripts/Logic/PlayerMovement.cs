@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerTurnLogic _playerTurnLogic;
     public Vector3 _spawnPos;
     public AxieFigure _axieFigure;
-    public Vector2 playerDirectionFacing = Vector2.right;
     public bool _canMove = true;
-    
+
     void Start()
     {
+        _playerTurnLogic = GetComponent<PlayerTurnLogic>();
         transform.position = _spawnPos;
     }
 
@@ -21,55 +22,46 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_canMove)
             return;
-        
-        if (Input.GetKeyDown(KeyCode.W) )
+        Movement();
+    }
+
+    void Movement()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A)
+                                        || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
         {
-            playerDirectionFacing = Vector2.up;
-            if (CanMoveWithoutObstacle(Vector2.up))
+            Vector2 direction = Input.GetKeyDown(KeyCode.W) ? Vector2.up
+                : Input.GetKeyDown(KeyCode.S) ? Vector2.down
+                : Input.GetKeyDown(KeyCode.A) ? Vector2.left
+                : Vector2.right;
+
+            //flip character
+            if (direction == Vector2.right)
             {
-                _canMove = false;
-                transform.DOMove(transform.position + Vector3.up, 0.1f).OnComplete(() => _canMove = true);
-                _axieFigure.SetAnimation("action/move-forward"); 
+                _axieFigure.FlipX = true;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            playerDirectionFacing = Vector2.down;
-            if (CanMoveWithoutObstacle(Vector2.down))
+            else if (direction == Vector2.left)
             {
-                _canMove = false;
-                transform.DOMove(transform.position + Vector3.down, 0.1f).OnComplete(() => _canMove = true);
-                _axieFigure.SetAnimation("action/move-forward"); 
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            playerDirectionFacing = Vector2.left;
-            if (CanMoveWithoutObstacle(Vector2.left))
-            {
-                transform.DOMove(transform.position + Vector3.left, 0.1f).OnComplete(() => _canMove = true);
-                _canMove = false;
-                _axieFigure.SetAnimation("action/move-forward");
                 _axieFigure.FlipX = false;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            playerDirectionFacing = Vector2.right;
-            if (CanMoveWithoutObstacle(Vector2.right))
+
+            if (CanMoveWithoutObstacle(direction))
             {
                 _canMove = false;
-                transform.DOMove(transform.position + Vector3.right, 0.1f).OnComplete(() => _canMove = true);
-                _axieFigure.SetAnimation("action/move-forward"); 
-                _axieFigure.FlipX = true;
+                transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() => _canMove = true);
+                _axieFigure.SetAnimation("action/move-forward");
+                _playerTurnLogic.DecreaseTurn();
+                return;
+            }
+            
+            if (CanAttack(direction))
+            {
+                AttackObject(direction);
+                _playerTurnLogic.DecreaseTurn();
+                return;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //kick obstacle or enemy
-            AttackObject(playerDirectionFacing);
-        }
     }
 
     bool CanMoveWithoutObstacle(Vector2 direction)
@@ -85,11 +77,24 @@ public class PlayerMovement : MonoBehaviour
             
             if (interfaceInteract.transform.TryGetComponent(out ITriggerObject triggerObject))
             {
-                triggerObject.OnTrigger();
+                triggerObject.OnTrigger(gameObject);
                 return true;
             }
         }
         return true;
+    }
+
+    bool CanAttack(Vector2 direction)
+    {
+        var interfaceInteract = Physics2D.Raycast(transform.position, direction, 1);
+        if (interfaceInteract)
+        {
+            if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void AttackObject(Vector2 direction)

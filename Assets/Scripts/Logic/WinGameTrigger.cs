@@ -5,12 +5,12 @@ using UnityEngine;
 
 public interface ITriggerObject
 {
-    void OnTrigger();
+    void OnTrigger(GameObject triggerObj);
 }
 
 public class WinGameTrigger : MonoBehaviour, ITriggerObject
 {
-    public void OnTrigger()
+    public void OnTrigger(GameObject triggerObj)
     {
         //win game
         //TODO : WIN GAME LOGIC ,Cicle Transition and sound,vfx
