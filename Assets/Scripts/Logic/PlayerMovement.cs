@@ -82,6 +82,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 return false;
             }
+            
+            if (interfaceInteract.transform.TryGetComponent(out ITriggerObject triggerObject))
+            {
+                triggerObject.OnTrigger();
+                return true;
+            }
         }
         return true;
     }

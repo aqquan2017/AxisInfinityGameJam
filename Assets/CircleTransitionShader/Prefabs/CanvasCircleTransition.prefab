@@ -116,7 +116,7 @@ MonoBehaviour:
   _canvas: {fileID: 3951686705450157821}
   _image: {fileID: 3951686706570467417}
   _playerPos: {fileID: 0}
-  _stopRadius: 0.15
+  _stopRadius: 0.1
   _delayTime: 0.5
   _isStop1Time: 1
 --- !u!1 &3951686706570467415

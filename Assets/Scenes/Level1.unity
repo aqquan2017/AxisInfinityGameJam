@@ -658,7 +658,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1857,6 +1857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d4c2fbea507894f9078bcbcf20a7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _curLevel: 0
 --- !u!1001 &2073475243
 PrefabInstance:
   m_ObjectHideFlags: 0

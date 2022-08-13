@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class WinGameTrigger : MonoBehaviour, ITriggerObject
     {
         //win game
         //TODO : WIN GAME LOGIC ,Cicle Transition and sound,vfx
-        
+        GameStatic.Instance.OnWinGame();
         Destroy(gameObject);
     }
 }

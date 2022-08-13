@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine;
 
 public class SceneController : BaseManager<SceneController>
 {
@@ -16,6 +17,7 @@ public class SceneController : BaseManager<SceneController>
 
     void OnLoadScene(Scene cur, Scene next)
     {
+        Debug.Log("SCENE" + " cur " + "START");
         OnChangeScene?.Invoke(next.buildIndex);
     }
 
