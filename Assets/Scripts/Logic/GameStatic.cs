@@ -18,7 +18,7 @@ public class GameStatic : BaseManager<GameStatic>
     public void OnWinGame()
     {
         CurrentPlayer.GetComponent<PlayerMovement>().PlayerFrozen();
-        CircleTransition.Instance.FadeIn();
+        CircleTransition.Instance.FadeIn(onEndFadeIn:() => SceneController.Instance.NextScene());
     }
 
     public void OnLoseGame()

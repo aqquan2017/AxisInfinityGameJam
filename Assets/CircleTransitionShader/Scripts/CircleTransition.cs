@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -84,7 +85,6 @@ public class CircleTransition : MonoBehaviour
 
         playerCanvasPos /= squareSize;
         _image.rectTransform.sizeDelta = new Vector2(squareSize, squareSize);
-
         
         _image.material.SetVector("_Center" , playerCanvasPos);
     }
@@ -113,7 +113,7 @@ public class CircleTransition : MonoBehaviour
     }
     
     
-    [ContextMenu("Fade out")]
+    [ContextMenu("Fade in")]
     public void FadeIn(Action onStartFadeIn = null, Action onMidFadeIn = null, Action onEndFadeIn = null)
     {
         onStartFadeIn?.Invoke();
