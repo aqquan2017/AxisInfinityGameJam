@@ -5,6 +5,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IInteractObject
 {
+    [SerializeField] Animator anim;
+
+    private string idleName = "Enemy_Idle";
+    private string hurtName = "Enemy_Hurt";
+    private string dieName = "Enemy_Die";
+
+    void Start()
+    {
+        anim.Play("Enemy_Idle");
+    }
+
     bool CanMoveWithoutObstacle(Vector2 direction)
     {
         //little bit tricky one, do this to avoid check collider itself
@@ -21,14 +32,15 @@ public class EnemyController : MonoBehaviour, IInteractObject
         {
             //move box
             //TODO : VFX, Sound
-            transform.DOMove((Vector2)transform.position + direction, 0.1f);
+            anim.SetBool("IsHurting", true);
+            transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() => anim.SetBool("IsHurting", false));
         }
         else
         {
             //destroy box
             //TODO : VFX, Sound
-            
-            Destroy(transform.gameObject);
+            anim.SetTrigger("Die");
+            Destroy(transform.gameObject, 1);
         }
     }
 }
