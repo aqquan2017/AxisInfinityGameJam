@@ -13,13 +13,6 @@ public class GameLogic : MonoBehaviour
 
         void Start()
         {
-            TimerManager.Instance.Init();
-            UIManager.Instance.Init();
-            SceneController.Instance.Init();
-            SoundManager.Instance.Init();
-            
-            Mixer.Init();
-
             string axieId = PlayerPrefs.GetString("selectingId", "2727");
             string genes = PlayerPrefs.GetString("selectingGenes", "0x2000000000000300008100e08308000000010010088081040001000010a043020000009008004106000100100860c40200010000084081060001001410a04406");
             _birdFigure.SetGenes(axieId, genes);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine;
 
 public class SceneController : BaseManager<SceneController>
 {
@@ -16,6 +17,7 @@ public class SceneController : BaseManager<SceneController>
 
     void OnLoadScene(Scene cur, Scene next)
     {
+        Debug.Log("SCENE" + " cur " + "START");
         OnChangeScene?.Invoke(next.buildIndex);
     }
 
@@ -32,10 +34,8 @@ public class SceneController : BaseManager<SceneController>
             return;
         }
 
-
         _currentScene = id;
-        UIManager.Instance.ShowPanel(typeof(FadeInFadeOut));
-        UIManager.Instance.GetPanel<FadeInFadeOut>().Fade(timeWait, () => SceneManager.LoadScene(id), timeWait);
+        SceneManager.LoadScene(_currentScene);
     }
 
     public void NextScene(float timeWait = 1)
@@ -46,15 +46,12 @@ public class SceneController : BaseManager<SceneController>
             return;
         }
 
-
         _currentScene++;
-        UIManager.Instance.ShowPanel(typeof(FadeInFadeOut));
-        UIManager.Instance.GetPanel<FadeInFadeOut>().Fade(timeWait, () => SceneManager.LoadScene(_currentScene), timeWait);
+        SceneManager.LoadScene(_currentScene);
     }
 
     public void ReloadScene(float timeWait = 1)
     {
-        UIManager.Instance.ShowPanel(typeof(FadeInFadeOut));
-        UIManager.Instance.GetPanel<FadeInFadeOut>().Fade(timeWait, () => SceneManager.LoadScene(_currentScene), timeWait);
+        SceneManager.LoadScene(_currentScene);
     }
 }
