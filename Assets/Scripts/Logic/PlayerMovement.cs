@@ -74,9 +74,14 @@ public class PlayerMovement : MonoBehaviour
 
     bool CanMoveWithoutObstacle(Vector2 direction)
     {
-        if (Physics2D.Raycast(transform.position, direction, 1))
+        var interfaceInteract = Physics2D.Raycast(transform.position, direction, 1);
+        if (interfaceInteract)
         {
-            return false;
+            if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject)
+                || interfaceInteract.transform.TryGetComponent(out IWallCollider wallCollider))
+            {
+                return false;
+            }
         }
         return true;
     }
