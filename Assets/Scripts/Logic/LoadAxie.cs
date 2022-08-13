@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameLogic : MonoBehaviour
+public class LoadAxie : MonoBehaviour
     {
         [SerializeField] AxieFigure _birdFigure;
 
@@ -50,7 +50,7 @@ public class GameLogic : MonoBehaviour
         {
             List<string> animationList = Mixer.Builder.axieMixerMaterials.GetMixerStuff(AxieFormType.Normal).GetAnimatioNames();
             string animationName = animationList[Random.Range(0, animationList.Count)];
-            _birdFigure.SetAnimation(animationName);
+            _birdFigure.SetAnimation(animationName, 1, true);
             Debug.Log(animationName);
             // foreach (var animName in animationList)
             // {

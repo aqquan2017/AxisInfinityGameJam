@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using AxieMixer.Unity;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStatic : BaseManager<GameStatic>
 {
     public int _curLevel = 0;
+    public GameObject CurrentPlayer;
     
     private void Awake()
     {
@@ -15,8 +17,14 @@ public class GameStatic : BaseManager<GameStatic>
 
     public void OnWinGame()
     {
-        CircleTransition.Instance.FadeIn();
-        CircleTransition.Instance.OnEndFadeIn += () => SceneController.Instance.NextScene();
+        CurrentPlayer.GetComponent<PlayerMovement>().PlayerFrozen();
+        CircleTransition.Instance.FadeIn(onEndFadeIn:() => SceneController.Instance.NextScene());
+    }
+
+    public void OnLoseGame()
+    {
+        CurrentPlayer.GetComponent<PlayerMovement>().PlayerFrozen();
+        CircleTransition.Instance.FadeIn(onEndFadeIn:() => SceneController.Instance.ReloadScene());
     }
 
     void Start()
@@ -28,10 +36,10 @@ public class GameStatic : BaseManager<GameStatic>
 
     private void OnChangeScene(int sceneName)
     {
-        var pos = GameObject.FindGameObjectWithTag("Player");
-        if (pos)
+        CurrentPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (CurrentPlayer)
         {
-            CircleTransition.Instance._playerPos = pos.transform;
+            CircleTransition.Instance._playerPos = CurrentPlayer.transform;
         }
         CircleTransition.Instance.FadeOut();
     }

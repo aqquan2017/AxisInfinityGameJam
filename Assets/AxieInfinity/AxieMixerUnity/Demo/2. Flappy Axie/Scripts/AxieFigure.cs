@@ -44,29 +44,25 @@ namespace Game
 
             skeletonAnimation.transform.SetParent(transform, false);
             skeletonAnimation.skeleton.ScaleX = (_flipX ? -1 : 1) * Mathf.Abs(skeletonAnimation.skeleton.ScaleX);
-            skeletonAnimation.timeScale = 0.5f;
             skeletonAnimation.skeleton.FindSlot("shadow").Attachment = null;
-            skeletonAnimation.state.SetAnimation(0, "action/idle/normal", true);
+            skeletonAnimation.timeScale = 0.5f;
+            skeletonAnimation.state.SetAnimation(0, "activity/appear", true);
             skeletonAnimation.state.End += SpineEndHandler;
         }
 
-        public void SetAnimation(string animName)
+        public void SetAnimation(string animName, float timeScale, bool loop = false)
         {
-            skeletonAnimation.state.SetAnimation(0, animName, true);
+            skeletonAnimation.timeScale = timeScale;
+            skeletonAnimation.state.ClearTrack(0);
+            skeletonAnimation.state.SetAnimation(0, animName, loop);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (skeletonAnimation != null)
             {
                 skeletonAnimation.state.End -= SpineEndHandler;
             }
-        }
-
-        public void DoJumpAnim()
-        {
-            skeletonAnimation.timeScale = 1f;
-            skeletonAnimation.AnimationState.SetAnimation(0, "action/move-forward", false);
         }
 
         private void SpineEndHandler(TrackEntry trackEntry)

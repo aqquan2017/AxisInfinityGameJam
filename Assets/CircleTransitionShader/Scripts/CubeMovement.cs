@@ -7,8 +7,6 @@ public class CubeMovement : MonoBehaviour
 {
     private void Start()
     {
-        CircleTransition.Instance.OnStartFadeOut += RandomPosition;
-        CircleTransition.Instance.OnStartFadeIn += () => this.enabled = false;
         RandomPosition();
     }
 

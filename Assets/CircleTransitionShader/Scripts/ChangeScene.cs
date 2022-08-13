@@ -9,8 +9,6 @@ public class ChangeScene : MonoBehaviour
 {
     void Start()
     {
-        CircleTransition.Instance.OnEndFadeIn += () => CircleTransition.Instance.FadeOut();
-        CircleTransition.Instance.OnStartFadeOut += RandomPosition;
         RandomPosition();
     }
 
