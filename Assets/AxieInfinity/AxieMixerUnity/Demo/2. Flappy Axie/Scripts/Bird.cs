@@ -18,7 +18,6 @@ namespace Game
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
                 GetComponent<Rigidbody2D>().velocity = Vector2.up * velocity;
-                figure?.DoJumpAnim();
             }
         }
 

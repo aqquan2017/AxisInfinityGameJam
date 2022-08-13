@@ -50,7 +50,7 @@ public class LoadAxie : MonoBehaviour
         {
             List<string> animationList = Mixer.Builder.axieMixerMaterials.GetMixerStuff(AxieFormType.Normal).GetAnimatioNames();
             string animationName = animationList[Random.Range(0, animationList.Count)];
-            _birdFigure.SetAnimation(animationName);
+            _birdFigure.SetAnimation(animationName, 1, true);
             Debug.Log(animationName);
             // foreach (var animName in animationList)
             // {

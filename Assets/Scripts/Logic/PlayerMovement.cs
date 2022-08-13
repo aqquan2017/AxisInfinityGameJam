@@ -1,9 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using Game;
 using UnityEngine;
+using System;
+using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -63,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
                     OnDoLater?.Invoke();
                     _canMove = true;
                 });
-                _axieFigure.SetAnimation("action/move-forward");
+                _axieFigure.SetAnimation("action/move-forward", 2f, false);
                 
                 return;
             }
@@ -71,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
             if (CanAttack(direction))
             {
                 AttackObject(direction);
+                string animAttack = Random.value > 0.5f ? "attack/melee/multi-attack" : "attack/ranged/cast-high";
+                _axieFigure.SetAnimation(animAttack, 2f, false);
+                
                 _playerTurnLogic.DecreaseTurn();
                 return;
             }
@@ -130,7 +132,10 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2)transform.position, Vector2.down, 0.01f);
         if (raycastHit2D)
         {
-            _playerTurnLogic.DecreaseTurn();
+            if (raycastHit2D.transform.TryGetComponent(out ITriggerObject interactObject))
+            {
+                interactObject.OnTrigger(gameObject);
+            }
         }
     }
 }
