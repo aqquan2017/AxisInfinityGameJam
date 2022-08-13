@@ -59,7 +59,7 @@ namespace Game
 
         private void OnDestroy()
         {
-            if (skeletonAnimation != null)
+            if (skeletonAnimation != null  && skeletonAnimation.state != null)
             {
                 skeletonAnimation.state.End -= SpineEndHandler;
             }

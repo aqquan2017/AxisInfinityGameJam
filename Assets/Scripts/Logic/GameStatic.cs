@@ -18,19 +18,27 @@ public class GameStatic : BaseManager<GameStatic>
     public void OnWinGame()
     {
         CurrentPlayer.GetComponent<PlayerMovement>().PlayerFrozen();
-        CircleTransition.Instance.FadeIn(onEndFadeIn:() => SceneController.Instance.NextScene());
+        SoundManager.Instance.Play(Sounds.WIN_LV);
+        CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn)
+        ,onEndFadeIn:() =>
+        {
+            SceneController.Instance.NextScene();
+        });
     }
 
     public void OnLoseGame()
     {
         CurrentPlayer.GetComponent<PlayerMovement>().PlayerFrozen();
-        CircleTransition.Instance.FadeIn(onEndFadeIn:() => SceneController.Instance.ReloadScene());
+        SoundManager.Instance.Play(Sounds.LOSE_LV);
+        CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn)
+            , onEndFadeIn:() => SceneController.Instance.ReloadScene());
     }
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);        
         SceneController.Instance.OnChangeScene += OnChangeScene;
+        SoundManager.Instance.Play(Sounds.LOSE_LV);
         SceneController.Instance.ChangeScene(2);
     }
 
@@ -41,7 +49,7 @@ public class GameStatic : BaseManager<GameStatic>
         {
             CircleTransition.Instance._playerPos = CurrentPlayer.transform;
         }
-        CircleTransition.Instance.FadeOut();
+        CircleTransition.Instance.FadeOut(onMidFadeOut:() => SoundManager.Instance.Play(Sounds.FadeOut));
     }
 
     public override void Init()

@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
                 : Input.GetKeyDown(KeyCode.A) ? Vector2.left
                 : Vector2.right;
 
+            SoundManager.Instance.Play(Sounds.UI_POPUP);
+            
             CheckHurtItSelf();
 
             //flip character
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 AttackObject(direction);
                 string animAttack = Random.value > 0.5f ? "attack/melee/multi-attack" : "attack/ranged/cast-high";
+                SoundManager.Instance.Play(Sounds.ENEMY_HIT);
                 _axieFigure.SetAnimation(animAttack, 2f, false);
                 
                 _playerTurnLogic.DecreaseTurn();

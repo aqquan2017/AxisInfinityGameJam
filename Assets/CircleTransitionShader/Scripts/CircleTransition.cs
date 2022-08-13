@@ -36,16 +36,16 @@ public class CircleTransition : MonoBehaviour
 
     private void Update()
     {
-        //test input
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            FadeIn();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            FadeOut();
-        }
+        // //test input
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     FadeIn();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     FadeOut();
+        // }
     }
 
     void DrawBlackCircle()
