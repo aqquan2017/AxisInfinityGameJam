@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundStorage
   m_EditorClassIdentifier: 
   _loadedSounds:
-  - audioClip: {fileID: 8300000, guid: 0ed9a019ec12c5846a37d7de50e36d65, type: 3}
+  - audioClip: {fileID: 8300000, guid: 0722f72ab4d5646c6b461dfaec74e559, type: 3}
     soundKey: 0
     soundVolume: 1
     id: 0
