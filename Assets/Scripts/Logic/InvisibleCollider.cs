@@ -3,7 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InvisibleCollider : MonoBehaviour
+public interface IWallCollider
+{
+    
+}
+
+public class InvisibleCollider : MonoBehaviour, IWallCollider
 {
     void Start()
     {

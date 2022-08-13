@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Vector3 _spawnPos;
     public AxieFigure _axieFigure;
+    public Vector2 playerDirectionFacing = Vector2.right;
     public bool _canMove = true;
     
     void Start()
@@ -21,31 +22,53 @@ public class PlayerMovement : MonoBehaviour
         if (!_canMove)
             return;
         
-        if (Input.GetKeyDown(KeyCode.W) && CanMoveWithoutObstacle(Vector2.up))
+        if (Input.GetKeyDown(KeyCode.W) )
         {
-            _canMove = false;
-            transform.DOMove(transform.position + Vector3.up, 0.1f).OnComplete(() => _canMove = true);
-            _axieFigure.SetAnimation("action/move-forward"); 
+            playerDirectionFacing = Vector2.up;
+            if (CanMoveWithoutObstacle(Vector2.up))
+            {
+                _canMove = false;
+                transform.DOMove(transform.position + Vector3.up, 0.1f).OnComplete(() => _canMove = true);
+                _axieFigure.SetAnimation("action/move-forward"); 
+            }
         }
-        if (Input.GetKeyDown(KeyCode.S) && CanMoveWithoutObstacle(Vector2.down))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            _canMove = false;
-            transform.DOMove(transform.position + Vector3.down, 0.1f).OnComplete(() => _canMove = true);
-            _axieFigure.SetAnimation("action/move-forward"); 
+            playerDirectionFacing = Vector2.down;
+            if (CanMoveWithoutObstacle(Vector2.down))
+            {
+                _canMove = false;
+                transform.DOMove(transform.position + Vector3.down, 0.1f).OnComplete(() => _canMove = true);
+                _axieFigure.SetAnimation("action/move-forward"); 
+            }
         }
-        if (Input.GetKeyDown(KeyCode.A) && CanMoveWithoutObstacle(Vector2.left) )
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            _canMove = false;
-            transform.DOMove(transform.position + Vector3.left, 0.1f).OnComplete(() => _canMove = true);
-            _axieFigure.SetAnimation("action/move-forward");
-            _axieFigure.FlipX = false;
+            playerDirectionFacing = Vector2.left;
+            if (CanMoveWithoutObstacle(Vector2.left))
+            {
+                transform.DOMove(transform.position + Vector3.left, 0.1f).OnComplete(() => _canMove = true);
+                _canMove = false;
+                _axieFigure.SetAnimation("action/move-forward");
+                _axieFigure.FlipX = false;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.D) && CanMoveWithoutObstacle(Vector2.right))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            _canMove = false;
-            transform.DOMove(transform.position + Vector3.right, 0.1f).OnComplete(() => _canMove = true);
-            _axieFigure.SetAnimation("action/move-forward"); 
-            _axieFigure.FlipX = true;
+            playerDirectionFacing = Vector2.right;
+            if (CanMoveWithoutObstacle(Vector2.right))
+            {
+                _canMove = false;
+                transform.DOMove(transform.position + Vector3.right, 0.1f).OnComplete(() => _canMove = true);
+                _axieFigure.SetAnimation("action/move-forward"); 
+                _axieFigure.FlipX = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //kick obstacle or enemy
+            AttackObject(playerDirectionFacing);
         }
     }
 
@@ -56,5 +79,17 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    void AttackObject(Vector2 direction)
+    {
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, 1);
+        if (raycastHit2D)
+        {
+            if (raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
+            {
+                interactObject.OnImpact(direction);
+            }
+        }
     }
 }
