@@ -57,10 +57,10 @@ namespace Game
 
         private void OnDisable()
         {
-            if (skeletonAnimation != null)
-            {
-                skeletonAnimation.state.End -= SpineEndHandler;
-            }
+            // if (skeletonAnimation != null)
+            // {
+            //     skeletonAnimation.state.End -= SpineEndHandler;
+            // }
         }
 
         public void DoJumpAnim()
