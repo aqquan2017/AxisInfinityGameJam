@@ -21,8 +21,6 @@ public class GameplayController : BaseManager<GameplayController>
         });
 
         SetEvent();
-
-        SceneController.Instance.NextScene(1);
     }
 
     private void OnLoadScene(int sceneId)

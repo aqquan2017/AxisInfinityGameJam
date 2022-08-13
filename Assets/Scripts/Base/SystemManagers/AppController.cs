@@ -12,6 +12,8 @@ public class AppController : MonoBehaviour
         GameplayController.Instance.Init();
         TimerManager.Instance.Init();
         DataManager.Instance.Init();
+        
+        DontDestroyOnLoad(gameObject);
     }
 
     

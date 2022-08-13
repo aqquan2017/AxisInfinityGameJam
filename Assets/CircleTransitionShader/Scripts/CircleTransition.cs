@@ -11,7 +11,7 @@ public class CircleTransition : MonoBehaviour
     
     [SerializeField] Canvas    _canvas;
     [SerializeField] Image     _image;
-    [SerializeField] Transform _playerPos;
+    [SerializeField] public Transform _playerPos;
 
     [SerializeField] private float _stopRadius = 0.15f;
     [SerializeField] private float _delayTime = 0.3f;
@@ -56,6 +56,8 @@ public class CircleTransition : MonoBehaviour
 
     void DrawBlackCircle()
     {
+        if (_playerPos == null)
+            return;
         //draw a transparent circle to the black screen
         var canvasRect   = _canvas.GetComponent<RectTransform>();
         var canvasHeight = canvasRect.rect.height;
