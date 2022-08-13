@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
     bool CanMoveWithoutObstacle(Vector2 direction)
     {
         //little bit tricky one, do this to avoid check collider itself
-        if (Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.3f))
+        if (Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f))
         {
             return false;
         }

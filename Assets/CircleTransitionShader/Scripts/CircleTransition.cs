@@ -17,13 +17,6 @@ public class CircleTransition : MonoBehaviour
     [SerializeField] private float _delayTime = 0.3f;
     [SerializeField] private bool _isStop1Time = true;
 
-    public event Action OnMiddleFadeIn;
-    public event Action OnMiddleFadeOut;
-    public event Action OnStartFadeOut;
-    public event Action OnStartFadeIn;
-    public event Action OnEndFadeIn;
-    public event Action OnEndFadeOut;
-    
     private void Awake()
     {
         Instance = this;
@@ -97,9 +90,9 @@ public class CircleTransition : MonoBehaviour
     }
     
     [ContextMenu("Fade out")]
-    public void FadeOut()
+    public void FadeOut(Action onStartFadeOut = null, Action onMidFadeOut = null, Action onEndFadeOut = null)
     {
-        OnStartFadeOut?.Invoke();
+        onStartFadeOut?.Invoke();
         DrawBlackCircle();
         float startVal = 0;
 
@@ -108,9 +101,9 @@ public class CircleTransition : MonoBehaviour
             DOTween.To( () => startVal , (x) => _image.material.SetFloat("_Radius" , x), _stopRadius, 0.3f).SetEase(Ease.OutSine)
                 .OnComplete(() =>
                 {
-                    OnMiddleFadeOut?.Invoke();
+                    onMidFadeOut?.Invoke();
                     DOTween.To(() => _stopRadius, (x) => _image.material.SetFloat("_Radius", x), 1, 1f).SetEase(Ease.OutBack).SetDelay(_delayTime)
-                        .OnComplete(() => OnEndFadeOut?.Invoke());
+                        .OnComplete(() => onEndFadeOut?.Invoke());
                 });
         }
         else
@@ -121,9 +114,9 @@ public class CircleTransition : MonoBehaviour
     
     
     [ContextMenu("Fade out")]
-    public void FadeIn()
+    public void FadeIn(Action onStartFadeIn = null, Action onMidFadeIn = null, Action onEndFadeIn = null)
     {
-        OnStartFadeIn?.Invoke();
+        onStartFadeIn?.Invoke();
         DrawBlackCircle();
         float startVal = 1f;
         if (_isStop1Time)
@@ -131,9 +124,9 @@ public class CircleTransition : MonoBehaviour
             DOTween.To( () => startVal , (x) => _image.material.SetFloat("_Radius" , x), _stopRadius, 0.7f).SetEase(Ease.InSine)
                 .OnComplete(() =>
                 {
-                    OnMiddleFadeIn?.Invoke();
+                    onMidFadeIn?.Invoke();
                     DOTween.To(() => _stopRadius, (x) => _image.material.SetFloat("_Radius", x), 0, 0.3f).SetEase(Ease.InBack).SetDelay(_delayTime)
-                        .OnComplete(() => OnEndFadeIn?.Invoke());
+                        .OnComplete(() => onEndFadeIn?.Invoke());
                         
                 });
         }

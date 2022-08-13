@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 _spawnPos;
     public AxieFigure _axieFigure;
     public bool _canMove = true;
+    public bool _gameOver = false;
 
     void Start()
     {
@@ -20,9 +21,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!_canMove)
+        if (!_canMove || _gameOver)
             return;
         Movement();
+    }
+
+    public void PlayerFrozen()
+    {
+        _gameOver = true;
     }
 
     void Movement()
@@ -35,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
                 : Input.GetKeyDown(KeyCode.A) ? Vector2.left
                 : Vector2.right;
 
+            CheckHurtItSelf();
+
             //flip character
             if (direction == Vector2.right)
             {
@@ -45,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
                 _axieFigure.FlipX = false;
             }
 
-            if (CanMoveWithoutObstacle(direction))
+            if (CanMove(direction))
             {
                 _canMove = false;
                 transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() => _canMove = true);
@@ -64,29 +72,30 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    bool CanMoveWithoutObstacle(Vector2 direction)
+    bool CanMove(Vector2 direction)
     {
         var interfaceInteract = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
         if (interfaceInteract)
         {
-            if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject)
-                || interfaceInteract.transform.TryGetComponent(out IWallCollider wallCollider))
-            {
-                return false;
-            }
-            
             if (interfaceInteract.transform.TryGetComponent(out ITriggerObject triggerObject))
             {
                 triggerObject.OnTrigger(gameObject);
                 return true;
             }
+            
+            return false;
+            // if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject)
+            //     || interfaceInteract.transform.TryGetComponent(out IWallCollider wallCollider))
+            // {
+            // }
+            
         }
         return true;
     }
 
     bool CanAttack(Vector2 direction)
     {
-        var interfaceInteract = Physics2D.Raycast(transform.position, direction, 1);
+        var interfaceInteract = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
         if (interfaceInteract)
         {
             if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject))
@@ -99,13 +108,23 @@ public class PlayerMovement : MonoBehaviour
 
     void AttackObject(Vector2 direction)
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, 1);
+        RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
         if (raycastHit2D)
         {
             if (raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
             {
                 interactObject.OnImpact(direction);
             }
+        }
+    }
+
+    //used for when player attack - still in a trap
+    void CheckHurtItSelf()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2)transform.position, Vector2.down, 0.01f);
+        if (raycastHit2D)
+        {
+            _playerTurnLogic.DecreaseTurn();
         }
     }
 }

@@ -21,11 +21,6 @@ public class TestManager : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        CircleTransition.Instance.OnStartFadeOut += () => PlaySound(_openTransitionSound);
-        CircleTransition.Instance.OnStartFadeIn += () => PlaySound(_openTransitionSound);
-        CircleTransition.Instance.OnMiddleFadeIn += () => PlaySound(_closeTransitionSound);
-        //CircleTransition.Instance.OnMiddleFadeOut += () => PlaySound(_closeTransitionSound);
-
     }
     
     public void PlaySound(AudioClip audioClip) => _audioSource.PlayOneShot(audioClip);
