@@ -17,7 +17,7 @@ public class InvisibleCollider : MonoBehaviour, IWallCollider
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position , Vector3.one);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawCube(transform.position , Vector3.one);
     }
 }
