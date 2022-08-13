@@ -53,12 +53,18 @@ public class PlayerMovement : MonoBehaviour
                 _axieFigure.FlipX = false;
             }
 
-            if (CanMove(direction))
+            Action OnDoLater = null;
+            if (CanMove(direction, ref OnDoLater))
             {
                 _canMove = false;
-                transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() => _canMove = true);
+                transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
+                {
+                    _playerTurnLogic.DecreaseTurn();
+                    OnDoLater?.Invoke();
+                    _canMove = true;
+                });
                 _axieFigure.SetAnimation("action/move-forward");
-                _playerTurnLogic.DecreaseTurn();
+                
                 return;
             }
             
@@ -72,14 +78,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    bool CanMove(Vector2 direction)
+    bool CanMove(Vector2 direction, ref Action OnDoLater)
     {
         var interfaceInteract = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
         if (interfaceInteract)
         {
             if (interfaceInteract.transform.TryGetComponent(out ITriggerObject triggerObject))
             {
-                triggerObject.OnTrigger(gameObject);
+                OnDoLater = () => triggerObject.OnTrigger(gameObject);
                 return true;
             }
             
