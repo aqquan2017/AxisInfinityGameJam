@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public interface IInteractObject
@@ -10,6 +11,8 @@ public interface IInteractObject
 
 public class BoxObstacle : MonoBehaviour, IInteractObject
 {
+    public MMF_Player _hitStrech;
+    
     bool CanMoveWithoutObstacle(Vector2 direction)
     {
         //little bit tricky one, do this to avoid check collider itself
@@ -22,6 +25,12 @@ public class BoxObstacle : MonoBehaviour, IInteractObject
 
     public void OnImpact(Vector2 direction)
     {
+        var stretch = _hitStrech.GetFeedbackOfType<MMF_SquashAndStretch>();
+        stretch.Axis = direction.x != 0
+            ? MMF_SquashAndStretch.PossibleAxis.YtoX
+            : MMF_SquashAndStretch.PossibleAxis.XtoY;
+        _hitStrech?.PlayFeedbacks();
+
         if (CanMoveWithoutObstacle(direction))
         {
             //move box
