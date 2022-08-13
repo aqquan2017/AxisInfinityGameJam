@@ -2,6 +2,8 @@ using DG.Tweening;
 using Game;
 using UnityEngine;
 using System;
+using MoreMountains.Feedbacks;
+using MoreMountains.FeedbacksForThirdParty;
 using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public AxieFigure _axieFigure;
     public bool _canMove = true;
     public bool _gameOver = false;
-
+    public MMF_Player _shakeFeedback;
+    
     void Start()
     {
         _playerTurnLogic = GetComponent<PlayerTurnLogic>();
@@ -75,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
                 string animAttack = Random.value > 0.5f ? "attack/melee/multi-attack" : "attack/ranged/cast-high";
                 SoundManager.Instance.Play(Sounds.ENEMY_HIT);
                 _axieFigure.SetAnimation(animAttack, 2f, false);
+                
+                var cameraShaker = _shakeFeedback.GetFeedbackOfType<MMF_CameraShake>();
+                cameraShaker.CameraShakeProperties.AmplitudeX = direction.x * 0.5f;
+                cameraShaker.CameraShakeProperties.AmplitudeY = direction.y * 0.5f;
+                _shakeFeedback?.PlayFeedbacks();
                 
                 _playerTurnLogic.DecreaseTurn();
                 return;
