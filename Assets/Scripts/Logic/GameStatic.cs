@@ -39,17 +39,18 @@ public class GameStatic : BaseManager<GameStatic>
         DontDestroyOnLoad(gameObject);        
         SceneController.Instance.OnChangeScene += OnChangeScene;
         SoundManager.Instance.Play(Sounds.LOSE_LV);
-        SceneController.Instance.ChangeScene(2);
+        SceneController.Instance.ChangeScene(1);
     }
 
-    private void OnChangeScene(int sceneName)
+    private void OnChangeScene(int sceneId)
     {
         CurrentPlayer = GameObject.FindGameObjectWithTag("Player");
         if (CurrentPlayer)
         {
             CircleTransition.Instance._playerPos = CurrentPlayer.transform;
         }
-        CircleTransition.Instance.FadeOut(onMidFadeOut:() => SoundManager.Instance.Play(Sounds.FadeOut));
+        if(sceneId > 1)
+            CircleTransition.Instance.FadeOut(onMidFadeOut:() => SoundManager.Instance.Play(Sounds.FadeOut));
     }
 
     public override void Init()

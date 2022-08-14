@@ -8,8 +8,6 @@ public class UIObjectSelectorItem : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Image icon;
     [SerializeField] Transform lockMark;
-    [SerializeField] UIProgressBar itemOpenProgressBar;
-    [SerializeField] Text itemOpenProgressText;
     [SerializeField] Text lvText;
 
     private bool _isLocked;
@@ -25,21 +23,6 @@ public class UIObjectSelectorItem : MonoBehaviour
         {
             _isLocked = value;
             lockMark.gameObject.SetActive(_isLocked);
-        }
-    }
-
-    public void SetOpenProgress((float current, float max) value)
-    {
-        if (itemOpenProgressBar)
-        {
-            itemOpenProgressBar.UpdateProgressBar(value);
-            itemOpenProgressBar.gameObject.SetActive(value.current < value.max);
-        }
-
-        if (itemOpenProgressText)
-        {
-            itemOpenProgressText.text = $"{(int)value.current} / {(int)value.max}";
-            itemOpenProgressText.gameObject.SetActive(value.current < value.max);
         }
     }
 
