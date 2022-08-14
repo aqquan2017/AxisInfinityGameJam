@@ -12,8 +12,13 @@ public class EnemyController : MonoBehaviour, IInteractObject
     private string hurtName = "Enemy_Hurt";
     private string dieName = "Enemy_Die";
 
+    private bool isDead = false;
+    private BoxCollider2D collider2D;
+
     void Start()
     {
+        collider2D = GetComponent<BoxCollider2D>();
+
         anim.Play("Enemy_Idle");
     }
 
@@ -47,6 +52,8 @@ public class EnemyController : MonoBehaviour, IInteractObject
 
     public void OnImpact(Vector2 direction)
     {
+        if (isDead) return;
+
         if (CanMoveWithoutObstacle(direction))
         {
             //move box
@@ -75,6 +82,8 @@ public class EnemyController : MonoBehaviour, IInteractObject
     {
         //destroy box
         //TODO : VFX, Sound
+        isDead = true;
+        collider2D.enabled = false;
         anim.SetTrigger("Die");
         Destroy(transform.gameObject, 1);
     }
