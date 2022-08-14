@@ -67,8 +67,11 @@ namespace Game
 
         private void SpineEndHandler(TrackEntry trackEntry)
         {
+            Debug.Log("RUN");
             string animation = trackEntry.Animation.Name;
-            if (animation == "action/move-forward")
+            if (animation == "activity/appear"
+                || animation == "attack/melee/multi-attack"
+                || animation == "attack/ranged/cast-high")
             {
                 skeletonAnimation.state.SetAnimation(0, "action/idle/normal", true);
                 skeletonAnimation.timeScale = 0.5f;
