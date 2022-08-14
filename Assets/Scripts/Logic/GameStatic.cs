@@ -48,6 +48,11 @@ public class GameStatic : BaseManager<GameStatic>
         {
             ExitToGameMenu();
         }
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ResetGame();
+        }
     }
 
     private bool canChangeScene = true;
@@ -61,6 +66,21 @@ public class GameStatic : BaseManager<GameStatic>
                 {
                     canChangeScene = true;
                     SceneController.Instance.ChangeScene(1);
+                });
+        }
+    }
+
+    private bool canResetScene = true;
+    public void ResetGame()
+    {
+        if (SceneController.Instance.CurrentScene > 1 && canResetScene)
+        {
+            canResetScene = false;
+            CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn),
+                onEndFadeIn:() =>
+                {
+                    canResetScene = true;
+                    SceneController.Instance.ReloadScene();
                 });
         }
     }
