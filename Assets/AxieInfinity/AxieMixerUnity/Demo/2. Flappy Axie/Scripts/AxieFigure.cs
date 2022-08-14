@@ -67,7 +67,6 @@ namespace Game
 
         private void SpineEndHandler(TrackEntry trackEntry)
         {
-            Debug.Log("RUN");
             string animation = trackEntry.Animation.Name;
             if (animation == "activity/appear"
                 || animation == "attack/melee/multi-attack"

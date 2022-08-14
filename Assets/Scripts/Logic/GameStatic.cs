@@ -19,11 +19,26 @@ public class GameStatic : BaseManager<GameStatic>
     {
         CurrentPlayer.GetComponent<PlayerMovement>().PlayerFrozen();
         SoundManager.Instance.Play(Sounds.WIN_LV);
+        
+        if (SceneController.Instance.CurrentScene + 1 >= SceneManager.sceneCountInBuildSettings)
+        {
+            OnFinishTheGame();
+            return;
+        }
+        
         CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn)
         ,onEndFadeIn:() =>
         {
             SceneController.Instance.NextScene();
         });
+    }
+
+    public void OnFinishTheGame()
+    {
+        UIManager.Instance.GetPanel<TextPopupPanel>().SetInfo("You have finished the game !!!" ,
+            "Thanks for playting, Hero, you lead Axie to success!",
+             ExitToGameMenu);
+        UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
     }
 
     public void OnLoseGame()

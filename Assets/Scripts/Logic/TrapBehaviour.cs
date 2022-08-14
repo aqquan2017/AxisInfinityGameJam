@@ -12,7 +12,7 @@ public class TrapBehaviour : MonoBehaviour, ITriggerObject
             //TODO : VFX HIT DAME
             playerTurnLogic.DecreaseTurn();
             string animName = Random.value > 0.5f ? "battle/get-debuff" : "defense/hit-by-normal-crit";
-            triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, true);
+            triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, false);
             SoundManager.Instance.Play(Sounds.PlayerTakeDamage);
         }
 

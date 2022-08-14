@@ -11,8 +11,10 @@ public class PlayerMovement : MonoBehaviour
     private PlayerTurnLogic _playerTurnLogic;
     public AxieFigure _axieFigure;
     public bool _canMove = true;
-    public bool _gameOver = false;
+    private bool _gameOver = false;
     public MMF_Player _shakeFeedback;
+
+    public bool GameOver => _gameOver;
     
     void Start()
     {

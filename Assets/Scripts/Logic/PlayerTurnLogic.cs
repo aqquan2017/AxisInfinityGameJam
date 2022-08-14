@@ -7,9 +7,11 @@ public class PlayerTurnLogic : MonoBehaviour
 {
     [SerializeField] int _turnCanGo = 10;
     [SerializeField] private TextMesh _textMesh;
-
+    [SerializeField] private PlayerMovement _playerMovement;
+    
     private void Start()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         UpdateTextMesh(_turnCanGo.ToString());
     }
 
@@ -22,6 +24,8 @@ public class PlayerTurnLogic : MonoBehaviour
 
     public bool DecreaseTurn()
     {
+        if (!_playerMovement.GameOver)
+            return false;
         _turnCanGo--;
         UpdateTextMesh(_turnCanGo.ToString());
         if (_turnCanGo <= 0)
