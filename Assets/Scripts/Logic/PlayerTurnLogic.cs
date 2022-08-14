@@ -24,10 +24,12 @@ public class PlayerTurnLogic : MonoBehaviour
 
     public bool DecreaseTurn()
     {
-        if (!_playerMovement.GameOver)
-            return false;
         _turnCanGo--;
         UpdateTextMesh(_turnCanGo.ToString());
+        
+        if (_playerMovement.GameOver)
+            return false;
+        
         if (_turnCanGo <= 0)
         {
             //Game Over

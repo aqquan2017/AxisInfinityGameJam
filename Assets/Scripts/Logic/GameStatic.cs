@@ -36,7 +36,7 @@ public class GameStatic : BaseManager<GameStatic>
     public void OnFinishTheGame()
     {
         UIManager.Instance.GetPanel<TextPopupPanel>().SetInfo("You have finished the game !!!" ,
-            "Thanks for playting, Hero, you lead Axie to success!",
+            "Thanks for playing, Hero, you lead Axie to success!",
              ExitToGameMenu);
         UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
     }

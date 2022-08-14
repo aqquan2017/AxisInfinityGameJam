@@ -64,8 +64,8 @@ public class PlayerMovement : MonoBehaviour
                 _canMove = false;
                 transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
                 {
-                    _playerTurnLogic.DecreaseTurn();
                     OnDoLater?.Invoke();
+                    _playerTurnLogic.DecreaseTurn();
                     _canMove = true;
                 });
                 _axieFigure.SetAnimation("action/move-forward", 2f, true);

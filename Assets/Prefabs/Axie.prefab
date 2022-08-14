@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 6096868246094535839}
   - component: {fileID: 2341526086401939343}
   - component: {fileID: 6241494661202310692}
-  - component: {fileID: 3859423082641769401}
   m_Layer: 0
   m_Name: TextCount
   m_TagString: Untagged
@@ -222,17 +221,6 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!210 &3859423082641769401
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5100604613987093620}
-  m_Enabled: 1
-  m_SortingLayerID: -1987226457
-  m_SortingLayer: 3
-  m_SortingOrder: 10
 --- !u!1 &5595794008165604659
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +234,6 @@ GameObject:
   - component: {fileID: 5595794008165604663}
   - component: {fileID: 5595794008165604662}
   - component: {fileID: 5595794008165604657}
-  - component: {fileID: 1031728327927300405}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -367,17 +354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flipX: 1
---- !u!210 &1031728327927300405
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5595794008165604659}
-  m_Enabled: 1
-  m_SortingLayerID: -1987226457
-  m_SortingLayer: 3
-  m_SortingOrder: 0
 --- !u!1 &5595794008350066552
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +366,7 @@ GameObject:
   - component: {fileID: 5595794008350066528}
   - component: {fileID: 87587179}
   - component: {fileID: 3812492914615005841}
+  - component: {fileID: 4923210405825827922}
   m_Layer: 0
   m_Name: Axie
   m_TagString: Player
@@ -428,7 +405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _axieFigure: {fileID: 5595794008165604657}
   _canMove: 1
-  _gameOver: 0
   _shakeFeedback: {fileID: 5229511}
 --- !u!114 &87587179
 MonoBehaviour:
@@ -457,3 +433,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turnCanGo: 10
   _textMesh: {fileID: 6241494661202310692}
+  _playerMovement: {fileID: 0}
+--- !u!210 &4923210405825827922
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595794008350066552}
+  m_Enabled: 1
+  m_SortingLayerID: -1987226457
+  m_SortingLayer: 3
+  m_SortingOrder: 0
