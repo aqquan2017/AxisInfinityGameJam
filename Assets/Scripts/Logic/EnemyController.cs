@@ -22,7 +22,8 @@ public class EnemyController : MonoBehaviour, IInteractObject
         RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2) transform.position + direction, direction, 0.1f);
         if (raycastHit2D)
         {
-            if (raycastHit2D.transform.TryGetComponent(out IWallCollider triggerObject))
+            if (raycastHit2D.transform.TryGetComponent(out IWallCollider triggerObject)
+                || raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
             {
                 return false;
             }
