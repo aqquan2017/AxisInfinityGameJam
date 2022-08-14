@@ -18,7 +18,8 @@ public interface IMoveIn
 public class BoxObstacle : MonoBehaviour, IInteractObject
 {
     public MMF_Player _hitStrech;
-    
+    public GameObject kickBoxVFX;
+
     bool CanMoveWithoutObstacle(Vector2 direction)
     {
         RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2) transform.position + direction, direction, 0.1f);
@@ -53,5 +54,11 @@ public class BoxObstacle : MonoBehaviour, IInteractObject
             //TODO : VFX, Sound
             
         }
+
+        float angle = direction == Vector2.up ? 90
+                : direction == Vector2.down ? -90
+                : direction == Vector2.right ? 0
+                : 180;
+        Pooling.InstantiateObject(kickBoxVFX, transform.position - (Vector3)direction * .5f, Quaternion.Euler(0, 0, angle));
     }
 }

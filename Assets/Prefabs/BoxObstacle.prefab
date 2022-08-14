@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitStrech: {fileID: 122613981}
+  kickBoxVFX: {fileID: 7751365883611757568, guid: f3ecf10c5e0f6dd40baadf0ecf1ad350,
+    type: 3}
 --- !u!61 &6721762724789270445
 BoxCollider2D:
   m_ObjectHideFlags: 0
