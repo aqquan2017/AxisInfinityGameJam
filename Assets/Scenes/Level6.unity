@@ -5123,6 +5123,11 @@ PrefabInstance:
       propertyPath: _turnCanGo
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5595794008165604657, guid: 2f94e80c784521442ba799dc595eea06,
+        type: 3}
+      propertyPath: _flipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5595794008350066552, guid: 2f94e80c784521442ba799dc595eea06,
         type: 3}
       propertyPath: m_Name

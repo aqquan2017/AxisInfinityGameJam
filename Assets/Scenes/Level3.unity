@@ -4112,6 +4112,11 @@ PrefabInstance:
       propertyPath: _turnCanGo
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5595794008350066528, guid: 2f94e80c784521442ba799dc595eea06,
+        type: 3}
+      propertyPath: _spawnPos.x
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5595794008350066552, guid: 2f94e80c784521442ba799dc595eea06,
         type: 3}
       propertyPath: m_Name
