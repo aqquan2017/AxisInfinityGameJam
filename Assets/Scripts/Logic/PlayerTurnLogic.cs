@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerTurnLogic : MonoBehaviour
@@ -18,6 +19,10 @@ public class PlayerTurnLogic : MonoBehaviour
     void UpdateTextMesh(string text)
     {
         _textMesh.text = text;
+        _textMesh.transform.DOScale(Vector3.one * 2, 0.1f).OnComplete(() =>
+        {
+            _textMesh.transform.DOScale(Vector3.one, 0.1f);
+        });
     }
 
     public int TurnCanGo => _turnCanGo;
