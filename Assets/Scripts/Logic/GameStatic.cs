@@ -42,6 +42,29 @@ public class GameStatic : BaseManager<GameStatic>
         SceneController.Instance.ChangeScene(1);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitToGameMenu();
+        }
+    }
+
+    private bool canChangeScene = true;
+    public void ExitToGameMenu()
+    {
+        if (SceneController.Instance.CurrentScene > 1 && canChangeScene)
+        {
+            canChangeScene = false;
+            CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn),
+                onEndFadeIn:() =>
+                {
+                    canChangeScene = true;
+                    SceneController.Instance.ChangeScene(1);
+                });
+        }
+    }
+
     private void OnChangeScene(int sceneId)
     {
         CurrentPlayer = GameObject.FindGameObjectWithTag("Player");

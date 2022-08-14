@@ -8,6 +8,7 @@ using UnityEngine;
 public class SceneController : BaseManager<SceneController>
 {
     private int _currentScene = 0;
+    public int CurrentScene => _currentScene;
     public event Action<int> OnChangeScene;
 
     public override void Init()
