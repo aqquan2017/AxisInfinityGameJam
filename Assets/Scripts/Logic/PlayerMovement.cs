@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
                     OnDoLater?.Invoke();
                     _canMove = true;
                 });
-                _axieFigure.SetAnimation("action/move-forward", 2f, false);
+                _axieFigure.SetAnimation("action/move-forward", 2f, true);
                 return;
             }
 
