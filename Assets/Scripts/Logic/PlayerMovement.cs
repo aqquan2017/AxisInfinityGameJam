@@ -94,33 +94,37 @@ public class PlayerMovement : MonoBehaviour
 
     bool CanMove(Vector2 direction, ref Action OnDoLater)
     {
-        var interfaceInteract = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
-        if (interfaceInteract)
+        var interfaceInteract = Physics2D.RaycastAll((Vector2)transform.position + direction, direction, 0.1f);
+        if (interfaceInteract.Length > 0)
         {
-            if (interfaceInteract.transform.TryGetComponent(out ITriggerObject triggerObject))
+            for (int i = 0; i < interfaceInteract.Length; i++)
             {
-                OnDoLater = () => triggerObject.OnTrigger(gameObject);
-                return true;
+                if (interfaceInteract[i].transform.TryGetComponent(out IInteractObject interactObject)
+                    || interfaceInteract[i].transform.TryGetComponent(out IWallCollider wallCollider))
+                {
+                    return false;
+                }
+                
+                if (interfaceInteract[i].transform.TryGetComponent(out ITriggerObject triggerObject))
+                {
+                    OnDoLater = () => triggerObject.OnTrigger(gameObject);
+                }
             }
-            
-            return false;
-            // if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject)
-            //     || interfaceInteract.transform.TryGetComponent(out IWallCollider wallCollider))
-            // {
-            // }
-            
         }
         return true;
     }
 
     bool CanAttack(Vector2 direction)
     {
-        var interfaceInteract = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
-        if (interfaceInteract)
+        var interfaceInteract = Physics2D.RaycastAll((Vector2)transform.position + direction, direction, 0.1f);
+        if (interfaceInteract.Length > 0)
         {
-            if (interfaceInteract.transform.TryGetComponent(out IInteractObject interactObject))
+            for (int i = 0; i < interfaceInteract.Length; i++)
             {
-                return true;
+                if (interfaceInteract[i].transform.TryGetComponent(out IInteractObject interactObject))
+                {
+                    return true;
+                }
             }
         }
         return false;
@@ -128,12 +132,15 @@ public class PlayerMovement : MonoBehaviour
 
     void AttackObject(Vector2 direction)
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.1f);
-        if (raycastHit2D)
+        RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll((Vector2)transform.position + direction, direction, 0.1f);
+        if (raycastHit2D.Length > 0)
         {
-            if (raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
+            for (int i = 0; i < raycastHit2D.Length; i++)
             {
-                interactObject.OnImpact(direction);
+                if (raycastHit2D[i].transform.TryGetComponent(out IInteractObject interactObject))
+                {
+                    interactObject.OnImpact(direction);
+                }
             }
         }
     }

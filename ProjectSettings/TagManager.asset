@@ -44,6 +44,9 @@ TagManager:
   - name: Trap
     uniqueID: 4014647109
     locked: 0
+  - name: Box
+    uniqueID: 2503492583
+    locked: 0
   - name: Player
     uniqueID: 2307740839
     locked: 0

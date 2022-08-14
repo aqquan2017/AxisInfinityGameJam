@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -15,10 +16,14 @@ public class BoxObstacle : MonoBehaviour, IInteractObject
     
     bool CanMoveWithoutObstacle(Vector2 direction)
     {
-        //little bit tricky one, do this to avoid check collider itself
-        if (Physics2D.Raycast((Vector2)transform.position + direction, direction, 0.3f))
+        RaycastHit2D raycastHit2D = Physics2D.Raycast((Vector2) transform.position + direction, direction, 0.1f);
+        if (raycastHit2D)
         {
-            return false;
+            if (raycastHit2D.transform.TryGetComponent(out IWallCollider triggerObject)
+                || raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
+            {
+                return false;
+            }
         }
         return true;
     }
