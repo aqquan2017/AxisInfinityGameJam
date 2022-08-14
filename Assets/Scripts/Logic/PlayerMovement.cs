@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerTurnLogic _playerTurnLogic;
-    public Vector3 _spawnPos;
     public AxieFigure _axieFigure;
     public bool _canMove = true;
     public bool _gameOver = false;
@@ -18,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _playerTurnLogic = GetComponent<PlayerTurnLogic>();
-        transform.position = _spawnPos;
     }
 
     private void Update()
