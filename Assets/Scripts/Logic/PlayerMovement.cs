@@ -71,6 +71,11 @@ public class PlayerMovement : MonoBehaviour
                 _axieFigure.SetAnimation("action/move-forward", 2f, false);
                 return;
             }
+
+            var cameraShaker = _shakeFeedback.GetFeedbackOfType<MMF_CameraShake>();
+            cameraShaker.CameraShakeProperties.AmplitudeX = direction.x * 0.6f;
+            cameraShaker.CameraShakeProperties.AmplitudeY = direction.y * 0.6f;
+            _shakeFeedback?.PlayFeedbacks();
             
             if (CanAttack(direction))
             {
@@ -79,10 +84,6 @@ public class PlayerMovement : MonoBehaviour
                 SoundManager.Instance.Play(Sounds.ENEMY_HIT);
                 _axieFigure.SetAnimation(animAttack, 2f, false);
                 
-                var cameraShaker = _shakeFeedback.GetFeedbackOfType<MMF_CameraShake>();
-                cameraShaker.CameraShakeProperties.AmplitudeX = direction.x * 0.5f;
-                cameraShaker.CameraShakeProperties.AmplitudeY = direction.y * 0.5f;
-                _shakeFeedback?.PlayFeedbacks();
                 
                 _playerTurnLogic.DecreaseTurn();
                 CheckHurtItSelf();

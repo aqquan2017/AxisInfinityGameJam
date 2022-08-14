@@ -364,7 +364,7 @@ SortingGroup:
   m_GameObject: {fileID: 5595794008165604659}
   m_Enabled: 1
   m_SortingLayerID: -1987226457
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
 --- !u!1 &5595794008350066552
 GameObject:
