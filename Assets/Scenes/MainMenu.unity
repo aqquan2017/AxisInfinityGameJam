@@ -412,6 +412,41 @@ PrefabInstance:
       propertyPath: bgmMainMenu
       value: 
       objectReference: {fileID: 1337367757}
+    - target: {fileID: 5574865128062378437, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.13207549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574865128062378437, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.13207549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574865128062378437, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.13207549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574865128062378437, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574865128062378437, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574865128062378438, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574865128062378439, guid: 6345875ce7c27d04196089e15093b3d2,
+        type: 3}
+      propertyPath: m_Name
+      value: GameText
+      objectReference: {fileID: 0}
     - target: {fileID: 5574865129198226824, guid: 6345875ce7c27d04196089e15093b3d2,
         type: 3}
       propertyPath: m_Pivot.x
