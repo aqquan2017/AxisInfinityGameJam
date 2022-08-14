@@ -10,6 +10,11 @@ public interface IInteractObject
     void OnImpact(Vector2 direction);
 }
 
+public interface IMoveIn
+{
+    
+}
+
 public class BoxObstacle : MonoBehaviour, IInteractObject
 {
     public MMF_Player _hitStrech;
