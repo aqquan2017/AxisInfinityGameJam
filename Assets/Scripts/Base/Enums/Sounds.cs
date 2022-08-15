@@ -16,5 +16,7 @@ public enum Sounds
     FadeOut,
     Bow,
     Buy,
-    PlayerTakeDamage
+    PlayerTakeDamage,
+    ENEMY_DEAD,
+    
 }

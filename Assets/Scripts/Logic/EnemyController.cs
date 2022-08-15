@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour, IInteractObject
     private string idleName = "Enemy_Idle";
     private string hurtName = "Enemy_Hurt";
     private string dieName = "Enemy_Die";
+    
+    public ParticleSystem deadVFX;
 
     private bool isDead = false;
     private BoxCollider2D collider2D;
@@ -85,6 +87,9 @@ public class EnemyController : MonoBehaviour, IInteractObject
         isDead = true;
         collider2D.enabled = false;
         anim.SetTrigger("Die");
+        var deadFX = Instantiate(deadVFX, transform.position + Vector3.forward * -3f, Quaternion.identity);
+        TimerManager.Instance.AddTimer(0.9f, () => deadFX.Play());
+        SoundManager.Instance.Play(Sounds.ENEMY_DEAD);
         Destroy(transform.gameObject, 1);
     }
 }
