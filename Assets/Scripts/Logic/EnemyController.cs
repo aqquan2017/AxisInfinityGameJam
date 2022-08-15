@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour, IInteractObject
     private string dieName = "Enemy_Die";
     
     public ParticleSystem deadVFX;
+    public ParticleSystem hitVFX;
+    public Transform spawnVfx;
 
     private bool isDead = false;
     private BoxCollider2D collider2D;
@@ -58,9 +60,9 @@ public class EnemyController : MonoBehaviour, IInteractObject
 
         if (CanMoveWithoutObstacle(direction))
         {
-            //move box
-            //TODO : VFX, Sound
             anim.SetBool("IsHurting", true);
+            var hitFx = Instantiate(hitVFX, spawnVfx.position, spawnVfx.rotation);
+            hitFx.Play();
 
             Vector2 originPos = transform.position;
             Action OnTrigger = null;
@@ -87,7 +89,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
         isDead = true;
         collider2D.enabled = false;
         anim.SetTrigger("Die");
-        var deadFX = Instantiate(deadVFX, transform.position + Vector3.forward * -3f, Quaternion.identity);
+        var deadFX = Instantiate(deadVFX, spawnVfx.position, spawnVfx.rotation);
         TimerManager.Instance.AddTimer(0.9f, () => deadFX.Play());
         SoundManager.Instance.Play(Sounds.ENEMY_DEAD);
         Destroy(transform.gameObject, 1);
