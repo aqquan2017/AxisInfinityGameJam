@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundStorage
   m_EditorClassIdentifier: 
   _loadedSounds:
-  - audioClip: {fileID: 8300000, guid: 0722f72ab4d5646c6b461dfaec74e559, type: 3}
+  - audioClip: {fileID: 8300000, guid: 239afcd03a18cff4b9baef844c092127, type: 3}
     soundKey: 0
     soundVolume: 1
     id: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     id: 0
     audioSource: {fileID: 0}
     isDestroyOnStopPlay: 0
-  - audioClip: {fileID: 8300000, guid: 78e7ea3665b60c641ad5352dcefa2138, type: 3}
+  - audioClip: {fileID: 8300000, guid: 76be702c3533990439b0f5707373ab71, type: 3}
     soundKey: 2
     soundVolume: 1
     id: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     id: 0
     audioSource: {fileID: 0}
     isDestroyOnStopPlay: 0
-  - audioClip: {fileID: 8300000, guid: e674ccb141b4d41689f1fce22b367a88, type: 3}
+  - audioClip: {fileID: 8300000, guid: dfaffd31173172e4b90174765576770b, type: 3}
     soundKey: 13
     soundVolume: 1
     id: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
     id: 0
     audioSource: {fileID: 0}
     isDestroyOnStopPlay: 0
-  - audioClip: {fileID: 8300000, guid: 28702a0a909d7f440817439d1b1eae05, type: 3}
+  - audioClip: {fileID: 8300000, guid: bb375d0c1f6bd634888e8ca91cc95c69, type: 3}
     soundKey: 14
     soundVolume: 1
     id: 0
