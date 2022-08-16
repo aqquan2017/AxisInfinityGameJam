@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public bool _canMove = true;
     private bool _gameOver = false;
     public MMF_Player _shakeFeedback;
+    public ParticleSystem _moveParticle;
+    public Transform _vfxSpawn;
 
     public bool GameOver => _gameOver;
     
@@ -35,18 +37,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Movement()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A)
-                                        || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
+        Vector2 direction = GetInput(); 
+        if (direction != Vector2.zero)
         {
-            Vector2 direction = Input.GetKeyDown(KeyCode.W) ? Vector2.up
-                : Input.GetKeyDown(KeyCode.S) ? Vector2.down
-                : Input.GetKeyDown(KeyCode.A) ? Vector2.left
-                : Vector2.right;
-
             SoundManager.Instance.Play(Sounds.UI_POPUP);
-            
-            
 
+            //rotate VFX transform to play VFX
+            float rotationVal = direction == Vector2.left ? 0
+                : direction == Vector2.down ? 90
+                : direction == Vector2.right ? 180
+                : 270;
+            _vfxSpawn.eulerAngles = Vector3.forward * rotationVal;
+            
             //flip character
             if (direction == Vector2.right)
             {
@@ -62,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
             if (CanMove(direction, ref OnDoLater))
             {
                 _canMove = false;
+                var moveVFX = Instantiate(_moveParticle, _vfxSpawn.position, _vfxSpawn.rotation);
+                moveVFX.Play();
                 transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
                 {
                     OnDoLater?.Invoke();
@@ -157,5 +161,26 @@ public class PlayerMovement : MonoBehaviour
                 interactObject.OnTrigger(gameObject);
             }
         }
+    }
+
+    Vector2 GetInput()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            return Vector2.up;
+        }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            return Vector2.left;
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            return Vector2.down;
+        }
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            return Vector2.right;
+        }
+        return Vector2.zero;
     }
 }
