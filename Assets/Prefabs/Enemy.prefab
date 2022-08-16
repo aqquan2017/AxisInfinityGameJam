@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 6251471878437005121}
   deadVFX: {fileID: 7649820816425280622, guid: 7431db5c8854843469c13f3a56064fd1, type: 3}
-  hitVFX: {fileID: 7649820816425280622, guid: 7431db5c8854843469c13f3a56064fd1, type: 3}
+  hitVFX: {fileID: 7751365883611757568, guid: f3ecf10c5e0f6dd40baadf0ecf1ad350, type: 3}
   spawnVfx: {fileID: 7243163382566468840}
 --- !u!95 &6251471878437005121
 Animator:

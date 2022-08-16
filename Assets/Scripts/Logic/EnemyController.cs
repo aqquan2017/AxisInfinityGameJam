@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
     private string dieName = "Enemy_Die";
     
     public ParticleSystem deadVFX;
-    public ParticleSystem hitVFX;
+    public GameObject hitVFX;
     public Transform spawnVfx;
 
     private bool isDead = false;
@@ -61,8 +61,13 @@ public class EnemyController : MonoBehaviour, IInteractObject
         if (CanMoveWithoutObstacle(direction))
         {
             anim.SetBool("IsHurting", true);
-            var hitFx = Instantiate(hitVFX, spawnVfx.position, spawnVfx.rotation);
-            hitFx.Play();
+            // var hitFx = Instantiate(hitVFX, spawnVfx.position, spawnVfx.rotation);
+            // hitFx.Play();
+            float angle = direction == Vector2.up ? 90
+                : direction == Vector2.down ? -90
+                : direction == Vector2.right ? 0
+                : 180;
+            Pooling.InstantiateObject(hitVFX, transform.position - (Vector3)direction * .5f, Quaternion.Euler(0, 0, angle));
 
             Vector2 originPos = transform.position;
             Action OnTrigger = null;
