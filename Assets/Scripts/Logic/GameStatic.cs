@@ -1,18 +1,45 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using AxieMixer.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum AnimationState{
+    IDLE,
+    ATTACK1,
+    ATTACK2,
+    HIT1,
+    HIT2,
+    WIN1,
+    WIN2,
+    LOSE,
+    START_GAME,
+    MOVE_FORWARD,
+}
+
 public class GameStatic : BaseManager<GameStatic>
 {
     public int _curLevel = 0;
     public GameObject CurrentPlayer;
+
+    private Dictionary<AnimationState, string> AnimationMapper;
+    
     
     private void Awake()
     {
         Mixer.Init();
+
+        AnimationMapper = new Dictionary<AnimationState, string>()
+        {
+            {AnimationState.IDLE , "action/idle/normal"},
+            {AnimationState.ATTACK1 , "attack/melee/multi-attack"},
+            {AnimationState.ATTACK2 , "attack/ranged/cast-high"},
+            {AnimationState.HIT1 , "battle/get-debuff"},
+            {AnimationState.HIT2 , "defense/hit-by-normal-crit"},
+            {AnimationState.WIN1 , "battle/get-buff"},
+            {AnimationState.WIN2 , "activity/evolve"},
+            {AnimationState.START_GAME , "activity/appear"},
+            {AnimationState.MOVE_FORWARD , "action/move-forward"},
+        };
     }
 
     public void OnWinGame()

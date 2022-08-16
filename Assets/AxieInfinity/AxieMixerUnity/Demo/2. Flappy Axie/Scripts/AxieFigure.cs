@@ -3,13 +3,10 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 
-namespace Game
-{
     public class AxieFigure : MonoBehaviour
     {
         private SkeletonAnimation skeletonAnimation;
-        
-        
+
         [SerializeField] private bool _flipX = false;
         public bool FlipX
         {
@@ -46,6 +43,7 @@ namespace Game
             skeletonAnimation.skeleton.ScaleX = (_flipX ? -1 : 1) * Mathf.Abs(skeletonAnimation.skeleton.ScaleX);
             skeletonAnimation.skeleton.FindSlot("shadow").Attachment = null;
             skeletonAnimation.timeScale = 0.5f;
+            
             skeletonAnimation.state.SetAnimation(0, "activity/appear", true);
             skeletonAnimation.state.End += SpineEndHandler;
         }
@@ -70,11 +68,13 @@ namespace Game
             string animation = trackEntry.Animation.Name;
             if (animation == "activity/appear"
                 || animation == "attack/melee/multi-attack"
-                || animation == "attack/ranged/cast-high")
+                || animation == "attack/ranged/cast-high"
+                || animation == "battle/get-debuff"
+                || animation == "defense/hit-by-normal-crit"
+                || animation == "action/move-forward")
             {
                 skeletonAnimation.state.SetAnimation(0, "action/idle/normal", true);
                 skeletonAnimation.timeScale = 0.5f;
             }
         }
     }
-}
