@@ -76,10 +76,6 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
 
-            var cameraShaker = _shakeFeedback.GetFeedbackOfType<MMF_CameraShake>();
-            cameraShaker.CameraShakeProperties.AmplitudeX = direction.x * 0.6f;
-            cameraShaker.CameraShakeProperties.AmplitudeY = direction.y * 0.6f;
-            _shakeFeedback?.PlayFeedbacks();
             
             if (CanAttack(direction))
             {
@@ -91,8 +87,12 @@ public class PlayerMovement : MonoBehaviour
                 
                 _playerTurnLogic.DecreaseTurn();
                 CheckHurtItSelf();
-                return;
             }
+            
+            var cameraShaker = _shakeFeedback.GetFeedbackOfType<MMF_CameraShake>();
+            cameraShaker.CameraShakeProperties.AmplitudeX = direction.x * 0.6f;
+            cameraShaker.CameraShakeProperties.AmplitudeY = direction.y * 0.6f;
+            _shakeFeedback?.PlayFeedbacks();
         }
 
     }
