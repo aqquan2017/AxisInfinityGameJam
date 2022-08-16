@@ -45,9 +45,9 @@ public class MainMenuPanel : MonoBehaviour
         private void OnInfoSetting()
         {
             UIManager.Instance.GetPanel<TextPopupPanel>().SetInfo("GUIDE" ,
-                "W/A/S/D or ARROW KEY to move axie around." +
-                "\nSPACE to reset level." +
-                "\nESCAPE to go back the main menu." +
+                "<color=#ff0000ff>W/A/S/D</color> or <color=#ff0000ff>ARROW KEY</color> to move axie around." +
+                "\n<color=#ff0000ff>SPACE</color> to reset level." +
+                "\n<color=#ff0000ff>ESCAPE</color> to go back the main menu." +
                 "\n\n Please help poor Axie ^^"); 
             
             UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
