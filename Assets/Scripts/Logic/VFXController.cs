@@ -8,13 +8,14 @@ public class VFXController : MonoBehaviour
 {
     [SerializeField] SkeletonAnimation vfxSke;
     [SerializeField] AutoDisable autoDisable;
+    public string _animName;
 
     private void OnEnable()
     {
-        SetAnimation("play", false, 1, autoDisable.DisableObj);
+        SetAnimation(_animName, false, 1, autoDisable.DisableObj); 
     }
 
-    void SetAnimation(string name, bool loop, float timeScale = 1, Action callback = null)
+    public void SetAnimation(string name, bool loop, float timeScale = 1, Action callback = null)
     {
         vfxSke.AnimationState.SetAnimation(0, name, loop);
         vfxSke.timeScale = timeScale;

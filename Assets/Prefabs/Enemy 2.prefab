@@ -226,6 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 6098231615561822945}
-  deadVFX: {fileID: 1225849559676887885, guid: 32ea7ffd900022148a694756a6ebb5e2, type: 3}
+  deadVFX: {fileID: 7756161062511979307, guid: b0dc82b4d6b018147bcaeddf0083ad7c, type: 3}
   hitVFX: {fileID: 7751365883611757568, guid: f3ecf10c5e0f6dd40baadf0ecf1ad350, type: 3}
   spawnVfx: {fileID: 7243163382566468840}

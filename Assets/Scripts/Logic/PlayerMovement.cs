@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using MoreMountains.Feedbacks;
 using MoreMountains.FeedbacksForThirdParty;
+using Spine.Unity;
 using Random = UnityEngine.Random;
 
 public class PlayerMovement : MonoBehaviour
@@ -14,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool _canMove = true;
     private bool _gameOver = false;
     public MMF_Player _shakeFeedback;
-    public ParticleSystem _moveParticle;
+    public SkeletonAnimation _moveParticle;
     public Transform _vfxSpawn;
     public event Action OnMoveAction;
 
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _canMove = false;
                 var moveVFX = Instantiate(_moveParticle, _vfxSpawn.position, _vfxSpawn.rotation);
-                moveVFX.Play();
+                moveVFX.AnimationState.SetAnimation(0, "animation" , false);
                 transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
                 {
                     OnDoLater?.Invoke();

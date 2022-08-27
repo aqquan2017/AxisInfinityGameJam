@@ -94,7 +94,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 277897023
-  m_SortingLayer: 4
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4129266592358984935
@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vfxSke: {fileID: 4129266592358984935}
   autoDisable: {fileID: 7359214239172234487}
+  _animName: play
 --- !u!114 &7359214239172234487
 MonoBehaviour:
   m_ObjectHideFlags: 0
