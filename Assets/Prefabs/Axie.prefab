@@ -360,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5595794008165604656
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3688d71352c82845829f585c1b28f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _axieFigure: {fileID: 5595794008165604657}
+  _axieFigure: {fileID: 0}
   _canMove: 1
   _shakeFeedback: {fileID: 5229511}
   _moveParticle: {fileID: 776403973749189039, guid: 8fecc71060c573c4e979a49c22225d70,
@@ -546,7 +546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32248ccbd493a5a438a1b4b04a547af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birdFigure: {fileID: 5595794008165604657}
+  _birdFigure: {fileID: 0}
+  classIdx: 0
+  classValue: 2
+  flipX: 1
 --- !u!114 &3812492914615005841
 MonoBehaviour:
   m_ObjectHideFlags: 0
