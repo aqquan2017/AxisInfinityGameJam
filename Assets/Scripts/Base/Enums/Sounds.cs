@@ -18,5 +18,6 @@ public enum Sounds
     Buy,
     PlayerTakeDamage,
     ENEMY_DEAD,
-    
+    KEY,
+    LOCK
 }

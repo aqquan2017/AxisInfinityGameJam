@@ -18,7 +18,7 @@ public class LockManager : MonoBehaviour, ITriggerObject, ILockMechanic
         { 
             string animName = Random.value > 0.5f ? "battle/get-debuff" : "defense/hit-by-normal-crit";
             triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, false);
-            SoundManager.Instance.Play(Sounds.Buy);
+            SoundManager.Instance.Play(Sounds.LOCK);
             var playerHitVFX = GameObject.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation); 
             playerHitVFX.Play();
             

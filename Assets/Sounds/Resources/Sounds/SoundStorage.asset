@@ -91,3 +91,15 @@ MonoBehaviour:
     id: 0
     audioSource: {fileID: 0}
     isDestroyOnStopPlay: 0
+  - audioClip: {fileID: 8300000, guid: 9400ffa10aca2e2469d68de16227f851, type: 3}
+    soundKey: 15
+    soundVolume: 1
+    id: 0
+    audioSource: {fileID: 0}
+    isDestroyOnStopPlay: 0
+  - audioClip: {fileID: 8300000, guid: 8faec007a7f2b824d9aa9c20065b87b8, type: 3}
+    soundKey: 16
+    soundVolume: 1
+    id: 0
+    audioSource: {fileID: 0}
+    isDestroyOnStopPlay: 0

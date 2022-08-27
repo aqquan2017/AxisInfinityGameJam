@@ -13,7 +13,7 @@ public class KeyController : MonoBehaviour, ITriggerObject
         { 
             string animName = Random.value > 0.5f ? "battle/get-debuff" : "defense/hit-by-normal-crit";
             triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, false);
-            SoundManager.Instance.Play(Sounds.Buy);
+            SoundManager.Instance.Play(Sounds.KEY);
             
             playerKeyLock.SetHaveKey();
             
