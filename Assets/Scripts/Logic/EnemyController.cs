@@ -96,6 +96,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
             bool haveTrigger = HaveTriggerInDirection(ref OnTrigger, direction);
             transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
             {
+                anim.state.ClearTrack(0);
                 anim.state.SetAnimation(0, hurtName, false);
                 if (haveTrigger)
                 {
@@ -126,6 +127,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
         //TODO : VFX, Sound
         isDead = true;
         collider2D.enabled = false;
+        anim.state.ClearTrack(0);
         anim.state.SetAnimation(0, dieName, false);
         var deadFX = Instantiate(deadVFX, spawnVfx.position, spawnVfx.rotation);
         TimerManager.Instance.AddTimer(0.9f, () => deadFX.Play());
