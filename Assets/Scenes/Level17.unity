@@ -4445,6 +4445,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6178080123786899582, guid: c3746cbb9bb987b429834d76044def2b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e9ccf5ec41c7d47ceb0da7e32403e3f1, type: 2}
     - target: {fileID: 7669433103562188104, guid: c3746cbb9bb987b429834d76044def2b,
         type: 3}
       propertyPath: m_Mesh
@@ -4801,7 +4806,7 @@ PrefabInstance:
     - target: {fileID: 3812492914615005841, guid: 2f94e80c784521442ba799dc595eea06,
         type: 3}
       propertyPath: _turnCanGo
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5595794008350066552, guid: 2f94e80c784521442ba799dc595eea06,
         type: 3}
@@ -6445,6 +6450,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy 2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6178080123786899582, guid: c3746cbb9bb987b429834d76044def2b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e9ccf5ec41c7d47ceb0da7e32403e3f1, type: 2}
     - target: {fileID: 7669433103562188104, guid: c3746cbb9bb987b429834d76044def2b,
         type: 3}
       propertyPath: m_Mesh
