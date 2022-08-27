@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public MMF_Player _shakeFeedback;
     public ParticleSystem _moveParticle;
     public Transform _vfxSpawn;
+    public event Action OnMoveAction;
 
     public bool GameOver => _gameOver;
     
@@ -73,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
                     _canMove = true;
                 });
                 _axieFigure.SetAnimation("action/move-forward", 2f, true);
+                OnMoveAction?.Invoke();
                 return;
             }
 
@@ -87,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 _playerTurnLogic.DecreaseTurn();
                 CheckHurtItSelf();
+                OnMoveAction?.Invoke();
             }
             
             var cameraShaker = _shakeFeedback.GetFeedbackOfType<MMF_CameraShake>();

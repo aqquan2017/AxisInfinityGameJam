@@ -1,14 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TrapBehaviour : MonoBehaviour, ITriggerObject
 {
     public ParticleSystem _playerHit;
     [SerializeField] private Transform _playerHitVfxSpawn;
+    [SerializeField] private List<SpriteRenderer> _trapGraphic;
 
+    [SerializeField] private bool _isSpriteUp_Down;
+    private bool _canBeHurt = true;
+
+    private PlayerMovement _playerMovement;
+    
+    private void Start()
+    {
+        _playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
+        if (_isSpriteUp_Down)
+        {
+            _playerMovement.OnMoveAction += OnPlayerMove;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_isSpriteUp_Down)
+        {
+            _playerMovement.OnMoveAction -= OnPlayerMove;
+        }
+    }
+
+    void OnPlayerMove()
+    {
+        foreach (var trap in _trapGraphic)
+        {
+            trap.enabled = !trap.enabled;
+        }
+    }
+    
     public void OnTrigger(GameObject triggerObj)
     {
+        if(!_canBeHurt)
+            return;
+
         if (triggerObj.TryGetComponent(out PlayerTurnLogic playerTurnLogic))
         { 
             //TODO : VFX HIT DAME
