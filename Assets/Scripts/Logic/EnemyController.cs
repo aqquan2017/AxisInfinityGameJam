@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
     public ParticleSystem deadVFX;
     public GameObject hitVFX;
     public Transform spawnVfx;
+    private PlayerMovement _playerMovement;
 
     private bool isDead = false;
     private BoxCollider2D collider2D;
@@ -25,6 +26,26 @@ public class EnemyController : MonoBehaviour, IInteractObject
     {
         collider2D = GetComponent<BoxCollider2D>();
         anim.state.Complete += OnBackToIdleAnim;
+        _playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
+        TimerManager.Instance.AddTimer(0.2f,() => _playerMovement.OnMoveAction += OnCheckDame);
+        
+    }
+
+    private void OnCheckDame()
+    {
+        CheckHurtItSelf();
+    }
+    
+    void CheckHurtItSelf()
+    {
+        var raycastHit2D = Physics2D.RaycastAll((Vector2)transform.position, Vector2.down, 0.01f);
+        for (int i = 0; i < raycastHit2D.Length; i++)
+        {
+            if (raycastHit2D[i].transform.TryGetComponent(out ITriggerObject interactObject))
+            {
+                interactObject.OnTrigger(gameObject);
+            }
+        }
     }
 
     bool CanMoveWithoutObstacle(Vector2 direction)
@@ -96,6 +117,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
     private void OnDestroy()
     {
         anim.state.Complete -= OnBackToIdleAnim;
+        _playerMovement.OnMoveAction -= OnCheckDame;
     }
 
     public void Die()
