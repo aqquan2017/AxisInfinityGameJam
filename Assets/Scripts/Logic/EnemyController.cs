@@ -28,7 +28,6 @@ public class EnemyController : MonoBehaviour, IInteractObject
         anim.state.Complete += OnBackToIdleAnim;
         _playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
         TimerManager.Instance.AddTimer(0.2f,() => _playerMovement.OnMoveAction += OnCheckDame);
-        
     }
 
     private void OnCheckDame()
@@ -54,7 +53,8 @@ public class EnemyController : MonoBehaviour, IInteractObject
         if (raycastHit2D)
         {
             if (raycastHit2D.transform.TryGetComponent(out IWallCollider triggerObject)
-                || raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
+                || raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject)
+                || raycastHit2D.transform.TryGetComponent(out ILockMechanic lockMechanic))
             {
                 return false;
             }

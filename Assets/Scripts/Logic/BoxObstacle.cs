@@ -26,7 +26,8 @@ public class BoxObstacle : MonoBehaviour, IInteractObject
         if (raycastHit2D)
         {
             if (raycastHit2D.transform.TryGetComponent(out IWallCollider triggerObject)
-                || raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject))
+                || raycastHit2D.transform.TryGetComponent(out IInteractObject interactObject)
+                || raycastHit2D.transform.TryGetComponent(out ILockMechanic lockMechanic))
             {
                 return false;
             }
