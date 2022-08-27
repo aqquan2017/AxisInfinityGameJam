@@ -16,6 +16,7 @@ public class LoadAxie : MonoBehaviour
         [SerializeField] int classIdx = 0;
         [SerializeField] int classValue = 2;
         [SerializeField] bool flipX = true;
+    [SerializeField] bool isPlayer = true;
 
     Axie2dBuilder builder => Mixer.Builder;
 
@@ -164,7 +165,10 @@ public class LoadAxie : MonoBehaviour
             }
 
             runtimeSkeletonAnimation.gameObject.AddComponent<AxieFigure>();
-            this.gameObject.GetComponent<PlayerMovement>()._axieFigure = runtimeSkeletonAnimation.GetComponent<AxieFigure>();
+            if (isPlayer)
+            {
+                this.gameObject.GetComponent<PlayerMovement>()._axieFigure = runtimeSkeletonAnimation.GetComponent<AxieFigure>();
+            }
             runtimeSkeletonAnimation.GetComponent<AxieFigure>().FlipX = flipX;
         }
         Debug.Log("Done");
