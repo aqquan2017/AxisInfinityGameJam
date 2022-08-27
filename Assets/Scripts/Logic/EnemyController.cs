@@ -2,15 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Spine.Unity;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IInteractObject
 {
-    [SerializeField] Animator anim;
+    [SerializeField] SkeletonAnimation anim;
 
-    private string idleName = "Enemy_Idle";
-    private string hurtName = "Enemy_Hurt";
-    private string dieName = "Enemy_Die";
+    private string idleName = "action/idle/normal";
+    private string hurtName = "defense/hit-by-normal";
+    private string dieName = "defense/hit-die";
     
     public ParticleSystem deadVFX;
     public GameObject hitVFX;
@@ -22,8 +23,6 @@ public class EnemyController : MonoBehaviour, IInteractObject
     void Start()
     {
         collider2D = GetComponent<BoxCollider2D>();
-
-        anim.Play("Enemy_Idle");
     }
 
     bool CanMoveWithoutObstacle(Vector2 direction)
@@ -60,7 +59,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
 
         if (CanMoveWithoutObstacle(direction))
         {
-            anim.SetBool("IsHurting", true);
+            //anim.SetBool("IsHurting", true);
             // var hitFx = Instantiate(hitVFX, spawnVfx.position, spawnVfx.rotation);
             // hitFx.Play();
             float angle = direction == Vector2.up ? 90
@@ -74,7 +73,10 @@ public class EnemyController : MonoBehaviour, IInteractObject
             bool haveTrigger = HaveTriggerInDirection(ref OnTrigger, direction);
             transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
             {
-                anim.SetBool("IsHurting", false);
+                anim.state.SetAnimation(0, hurtName, false).Complete += entry =>
+                {
+                    anim.state.SetAnimation(0, idleName, true);
+                };
                 if (haveTrigger)
                 {
                     OnTrigger?.Invoke();
@@ -93,7 +95,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
         //TODO : VFX, Sound
         isDead = true;
         collider2D.enabled = false;
-        anim.SetTrigger("Die");
+        anim.state.SetAnimation(0, dieName, false);
         var deadFX = Instantiate(deadVFX, spawnVfx.position, spawnVfx.rotation);
         TimerManager.Instance.AddTimer(0.9f, () => deadFX.Play());
         SoundManager.Instance.Play(Sounds.ENEMY_DEAD);
