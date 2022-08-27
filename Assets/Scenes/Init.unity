@@ -439,3 +439,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _curLevel: 0
   CurrentPlayer: {fileID: 0}
+  AxieRescue:
+  - {fileID: -1275182643, guid: d41f292a117e864429bf839478ef9e0a, type: 3}
+  - {fileID: 573295599, guid: d41f292a117e864429bf839478ef9e0a, type: 3}
+  - {fileID: -1601023003, guid: d41f292a117e864429bf839478ef9e0a, type: 3}
+  AxieRescueQuote:
+  - Hi, nice to meet you ^^
+  - You want to go with me? Fine.
+  - Let's gooo!

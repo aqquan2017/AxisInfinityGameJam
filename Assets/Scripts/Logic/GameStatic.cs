@@ -22,7 +22,8 @@ public class GameStatic : BaseManager<GameStatic>
     public GameObject CurrentPlayer;
 
     private Dictionary<AnimationState, string> AnimationMapper;
-    
+    [SerializeField] private List<Sprite> AxieRescue = new List<Sprite>();
+    [SerializeField] private List<string> AxieRescueQuote = new List<string>();
     
     private void Awake()
     {
@@ -53,19 +54,40 @@ public class GameStatic : BaseManager<GameStatic>
             return;
         }
         
-        CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn)
-        ,onEndFadeIn:() =>
+        if ((SceneController.Instance.CurrentScene - 1) % 3 == 0)
         {
-            SceneController.Instance.NextScene();
-        });
+            //Axie rescue
+            OnFinishRescueLv();
+            return;
+        }
+
+        OnNextLevel();
     }
 
-    public void OnFinishTheGame()
+    void OnNextLevel()
+    {
+        CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn)
+            ,onEndFadeIn:() =>
+            {
+                SceneController.Instance.NextScene();
+            });
+    }
+
+    void OnFinishTheGame()
     {
         UIManager.Instance.GetPanel<TextPopupPanel>().SetInfo("You have finished the game !!!" ,
             "Thanks for playing, Hero, you lead Axie to success!",
              ExitToGameMenu);
         UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
+    }
+
+    void OnFinishRescueLv()
+    {
+        int index = (SceneController.Instance.CurrentScene - 1) / 3 - 1;
+        UIManager.Instance.GetPanel<AxieRescuePanel>().SetInfo("AXIE UNLOCK!" ,
+            AxieRescueQuote[index], AxieRescue[index],
+            OnNextLevel);
+        UIManager.Instance.ShowPanelWithDG(typeof(AxieRescuePanel));
     }
     
     public void OnHowToPlay()
