@@ -47,9 +47,9 @@ TagManager:
   - name: Box
     uniqueID: 2503492583
     locked: 0
-  - name: Player
-    uniqueID: 2307740839
-    locked: 0
   - name: Enemy
     uniqueID: 3402392617
+    locked: 0
+  - name: Player
+    uniqueID: 2307740839
     locked: 0
