@@ -1024,6 +1024,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87587179, guid: 2f94e80c784521442ba799dc595eea06, type: 3}
+      propertyPath: classIdx
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 87587179, guid: 2f94e80c784521442ba799dc595eea06, type: 3}
+      propertyPath: classValue
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3812492914615005841, guid: 2f94e80c784521442ba799dc595eea06,
         type: 3}
       propertyPath: _turnCanGo
@@ -5478,6 +5486,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1042710355807957552, guid: e4084974581f75b47b6b1d0a2acc221e,
+        type: 3}
+      propertyPath: classIdx
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042710355807957552, guid: e4084974581f75b47b6b1d0a2acc221e,
+        type: 3}
+      propertyPath: classValue
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1042710355807957558, guid: e4084974581f75b47b6b1d0a2acc221e,
         type: 3}
       propertyPath: m_Name
