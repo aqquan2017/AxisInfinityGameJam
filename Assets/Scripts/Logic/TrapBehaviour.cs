@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class TrapBehaviour : MonoBehaviour, ITriggerObject
 {
     public ParticleSystem _playerHit;
     [SerializeField] private Transform _playerHitVfxSpawn;
-    [SerializeField] private List<SpriteRenderer> _trapGraphic;
+    [SerializeField] private List<GameObject> _trapGraphic;
 
-    [SerializeField] private bool _isSpriteUp_Down = false;
-    [SerializeField] private bool _initSpriteUp_Down = true;
+    [SerializeField] private bool _isSpriteUp_Down;
+    [SerializeField] private bool _initSpriteUp_Down;
     private bool _canBeHurt = true;
-    
-
+    private bool isDown = false;
     private PlayerMovement _playerMovement;
     
     private void Start()
@@ -24,11 +24,18 @@ public class TrapBehaviour : MonoBehaviour, ITriggerObject
         if (_isSpriteUp_Down)
         {
             _playerMovement.OnMoveAction += OnPlayerMove;
-            foreach (var trap in _trapGraphic)
-            {
-                trap.enabled = _initSpriteUp_Down; 
-            }
         }
+        foreach (var trap in _trapGraphic)
+        {
+            //trap.enabled = _initSpriteUp_Down;
+            if (_initSpriteUp_Down)
+                trap.transform.localPosition = new Vector2(trap.transform.localPosition.x, 0);
+            else
+                trap.transform.localPosition = new Vector2(trap.transform.localPosition.x, -.45f);
+        }
+
+        isDown = _initSpriteUp_Down;
+        _canBeHurt = isDown;
     }
 
     private void OnDestroy()
@@ -43,8 +50,16 @@ public class TrapBehaviour : MonoBehaviour, ITriggerObject
     {
         foreach (var trap in _trapGraphic)
         {
-            trap.enabled = !trap.enabled;
+            //trap.enabled = !trap.enabled;
+            trap.transform.DOKill();
+            if (isDown)
+                trap.transform.DOLocalMoveY(-.45f, .1f).SetEase(Ease.OutQuad);
+            else
+                trap.transform.DOLocalMoveY(0, .1f).SetEase(Ease.OutQuad);
+            
         }
+        isDown = !isDown;
+        _canBeHurt = !_canBeHurt;
     }
     
     public void OnTrigger(GameObject triggerObj)
