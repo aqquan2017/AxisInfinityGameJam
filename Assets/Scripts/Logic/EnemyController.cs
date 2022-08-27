@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Spine;
 using Spine.Unity;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
     void Start()
     {
         collider2D = GetComponent<BoxCollider2D>();
+        anim.state.Complete += OnBackToIdleAnim;
     }
 
     bool CanMoveWithoutObstacle(Vector2 direction)
@@ -73,10 +75,7 @@ public class EnemyController : MonoBehaviour, IInteractObject
             bool haveTrigger = HaveTriggerInDirection(ref OnTrigger, direction);
             transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>
             {
-                anim.state.SetAnimation(0, hurtName, false).Complete += entry =>
-                {
-                    anim.state.SetAnimation(0, idleName, true);
-                };
+                anim.state.SetAnimation(0, hurtName, false);
                 if (haveTrigger)
                 {
                     OnTrigger?.Invoke();
@@ -89,6 +88,16 @@ public class EnemyController : MonoBehaviour, IInteractObject
         }
     }
 
+    void OnBackToIdleAnim(TrackEntry entry)
+    {
+        anim.state.SetAnimation(0, idleName, true);
+    }
+    
+    private void OnDestroy()
+    {
+        anim.state.Complete -= OnBackToIdleAnim;
+    }
+
     public void Die()
     {
         //destroy box
@@ -99,6 +108,6 @@ public class EnemyController : MonoBehaviour, IInteractObject
         var deadFX = Instantiate(deadVFX, spawnVfx.position, spawnVfx.rotation);
         TimerManager.Instance.AddTimer(0.9f, () => deadFX.Play());
         SoundManager.Instance.Play(Sounds.ENEMY_DEAD);
-        Destroy(transform.gameObject, 1);
+        Destroy(transform.gameObject, 1.5f);
     }
 }
