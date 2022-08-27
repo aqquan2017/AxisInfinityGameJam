@@ -67,6 +67,14 @@ public class GameStatic : BaseManager<GameStatic>
              ExitToGameMenu);
         UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
     }
+    
+    public void OnHowToPlay()
+    {
+        UIManager.Instance.GetPanel<TextPopupPanel>().SetInfo("You have finished the game !!!" ,
+            "Thanks for playing, Hero, you lead Axie to success!",
+            ExitToGameMenu);
+        UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
+    }
 
     public void OnLoseGame()
     {
