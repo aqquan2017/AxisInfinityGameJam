@@ -12,7 +12,9 @@ public class TrapBehaviour : MonoBehaviour, ITriggerObject
     [SerializeField] private List<SpriteRenderer> _trapGraphic;
 
     [SerializeField] private bool _isSpriteUp_Down;
+    [SerializeField] private bool _initSpriteUp_Down;
     private bool _canBeHurt = true;
+    
 
     private PlayerMovement _playerMovement;
     
@@ -22,6 +24,10 @@ public class TrapBehaviour : MonoBehaviour, ITriggerObject
         if (_isSpriteUp_Down)
         {
             _playerMovement.OnMoveAction += OnPlayerMove;
+        }
+        foreach (var trap in _trapGraphic)
+        {
+            trap.enabled = _initSpriteUp_Down;
         }
     }
 
