@@ -1235,7 +1235,7 @@ PrefabInstance:
     - target: {fileID: 1042710355807957552, guid: e4084974581f75b47b6b1d0a2acc221e,
         type: 3}
       propertyPath: flipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1042710355807957552, guid: e4084974581f75b47b6b1d0a2acc221e,
         type: 3}
