@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!_canMove || _gameOver)
+        if (!_canMove || _gameOver || _axieFigure == null)
             return;
         Movement();
     }
