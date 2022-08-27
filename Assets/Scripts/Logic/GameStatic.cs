@@ -129,7 +129,7 @@ public class GameStatic : BaseManager<GameStatic>
             CircleTransition.Instance.FadeIn(onMidFadeIn:() => SoundManager.Instance.Play(Sounds.FadeIn),
                 onEndFadeIn:() =>
                 {
-                    canResetScene = true;
+                    TimerManager.Instance.AddTimer(2f ,() => canResetScene = true);
                     SceneController.Instance.ReloadScene();
                 });
         }
