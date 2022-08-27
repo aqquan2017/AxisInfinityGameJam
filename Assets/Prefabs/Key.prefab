@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7baf92e9ef8961d4081bf7be351bf6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHit: {fileID: 8871702133905703838, guid: 71e008d5f816d29419a3d3dcdf1a5ab8,
+  _playerHit: {fileID: 7756161062511979307, guid: b0dc82b4d6b018147bcaeddf0083ad7c,
     type: 3}
   _playerHitVfxSpawn: {fileID: 8847437374292740747}
 --- !u!95 &2315436436824447196
