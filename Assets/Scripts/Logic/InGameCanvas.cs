@@ -9,10 +9,15 @@ public class InGameCanvas : MonoBehaviour
 {
     public Text _levelText;
     public Button _howToPlayBtn;
+    [SerializeField] private Text levelContentTxt;
+
+    [Header("Level Content")] public List<string> ListLvContent = new List<string>();
+
     void Start()
     {
         _levelText.text = "Level " + (SceneController.Instance.CurrentScene - 1).ToString();
         _howToPlayBtn.onClick.AddListener(OnHowToPlay);
+        levelContentTxt.text = ListLvContent[SceneController.Instance.CurrentScene - 2];
     }
 
     private void OnDestroy()
