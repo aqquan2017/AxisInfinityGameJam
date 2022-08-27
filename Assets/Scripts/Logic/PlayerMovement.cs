@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerTurnLogic _playerTurnLogic;
+    private PlayerKeyLock _playerKeyLock;
     public AxieFigure _axieFigure;
     public bool _canMove = true;
     private bool _gameOver = false;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _playerTurnLogic = GetComponent<PlayerTurnLogic>();
+        _playerKeyLock = GetComponent<PlayerKeyLock>();
     }
 
     private void Update()
@@ -115,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (interfaceInteract[i].transform.TryGetComponent(out ITriggerObject triggerObject))
                 {
+                    if (interfaceInteract[i].transform.TryGetComponent(out ILockMechanic lockMechanic) && !_playerKeyLock.HaveKey)
+                    {
+                        return false;
+                    }
+                    
                     OnDoLater = () => triggerObject.OnTrigger(gameObject);
                 }
             }
