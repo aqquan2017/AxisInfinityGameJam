@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using AxieCore.AxieMixer;
 using AxieMixer.Unity;
-using Game;
 using Newtonsoft.Json.Linq;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
-using static UnityEditor.ObjectChangeEventStream;
 
 public class LoadAxie : MonoBehaviour
     {

@@ -79,7 +79,7 @@ Material:
     - _floatVar: 0
     m_Colors:
     - _BgColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Center: {r: 0.28135878, g: 0.5312345, b: 0, a: 0}
+    - _Center: {r: 0.32151544, g: 0.5356969, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GradientColor: {r: 1, g: 1, b: 1, a: 1}
