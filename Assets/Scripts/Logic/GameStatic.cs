@@ -53,8 +53,11 @@ public class GameStatic : BaseManager<GameStatic>
             OnFinishTheGame();
             return;
         }
-        
-        if ((SceneController.Instance.CurrentScene - 1) % 3 == 0)
+
+        int currentLv = (SceneController.Instance.CurrentScene - 1);
+        if (currentLv == 5
+            || currentLv == 12
+            || currentLv == 18)
         {
             //Axie rescue
             OnFinishRescueLv();
@@ -81,13 +84,15 @@ public class GameStatic : BaseManager<GameStatic>
         UIManager.Instance.ShowPanelWithDG(typeof(TextPopupPanel));
     }
 
+    private int _countMeetNewCharacter = 0;
     void OnFinishRescueLv()
     {
-        int index = (SceneController.Instance.CurrentScene - 1) / 3 - 1;
+        int index = _countMeetNewCharacter;
         UIManager.Instance.GetPanel<AxieRescuePanel>().SetInfo("AXIE UNLOCK!" ,
             AxieRescueQuote[index], AxieRescue[index],
             OnNextLevel);
         UIManager.Instance.ShowPanelWithDG(typeof(AxieRescuePanel));
+        _countMeetNewCharacter++;
     }
     
     public void OnHowToPlay()

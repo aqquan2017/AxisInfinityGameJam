@@ -4815,6 +4815,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87587179, guid: 2f94e80c784521442ba799dc595eea06, type: 3}
+      propertyPath: classIdx
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3812492914615005841, guid: 2f94e80c784521442ba799dc595eea06,
         type: 3}
       propertyPath: _turnCanGo
