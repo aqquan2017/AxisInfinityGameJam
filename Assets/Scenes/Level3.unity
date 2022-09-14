@@ -3254,6 +3254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4036314407316151288, guid: dd1fa323761dd1641ac8d1c086ec49ef,
+        type: 3}
+      propertyPath: ListLvContent.Array.data[17]
+      value: We are Axie.
+      objectReference: {fileID: 0}
     - target: {fileID: 4036314407316151291, guid: dd1fa323761dd1641ac8d1c086ec49ef,
         type: 3}
       propertyPath: m_Pivot.x
