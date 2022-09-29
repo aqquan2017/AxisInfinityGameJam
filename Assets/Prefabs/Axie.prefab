@@ -531,7 +531,7 @@ MonoBehaviour:
   _axieFigure: {fileID: 0}
   _canMove: 1
   _shakeFeedback: {fileID: 5229511}
-  _moveParticle: {fileID: 776403973749189039, guid: 8fecc71060c573c4e979a49c22225d70,
+  _moveParticle: {fileID: 6043056653253870405, guid: 7b92cdd1f877b644cbb0d5f638101dd7,
     type: 3}
   _vfxSpawn: {fileID: 80908032589129690}
 --- !u!114 &87587179
