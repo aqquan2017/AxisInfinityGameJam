@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using Game;
 using UnityEngine;
 using System;
@@ -176,19 +176,19 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.W) || ControlFreak2.CF2Input.GetKeyDown(KeyCode.UpArrow))
         {
             return Vector2.up;
         }
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.A) || ControlFreak2.CF2Input.GetKeyDown(KeyCode.LeftArrow))
         {
             return Vector2.left;
         }
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.S) || ControlFreak2.CF2Input.GetKeyDown(KeyCode.DownArrow))
         {
             return Vector2.down;
         }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.D) || ControlFreak2.CF2Input.GetKeyDown(KeyCode.RightArrow))
         {
             return Vector2.right;
         }

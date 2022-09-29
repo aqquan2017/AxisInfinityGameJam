@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AxieMixer.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -121,12 +121,12 @@ public class GameStatic : BaseManager<GameStatic>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.Escape))
         {
             ExitToGameMenu();
         }
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.Space))
         {
             ResetGame();
         }
