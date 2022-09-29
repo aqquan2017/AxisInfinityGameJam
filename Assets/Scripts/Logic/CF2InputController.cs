@@ -28,6 +28,12 @@ public class CF2InputController : MonoBehaviour
 
     void OnSceneLoad(Scene arg0, LoadSceneMode loadSceneMode)
     {
-        TimerManager.Instance.AddTimer(1f , () => gameObject.SetActive(arg0.buildIndex > 1));
+        if (arg0.buildIndex < 2)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
+        TimerManager.Instance.AddTimer(1f , () => gameObject.SetActive(true));
     }
 }

@@ -28,7 +28,7 @@ public class GameStatic : BaseManager<GameStatic>
     private void Awake()
     {
         Mixer.Init();
-        Application.targetFrameRate = 90;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
         AnimationMapper = new Dictionary<AnimationState, string>()
         {
