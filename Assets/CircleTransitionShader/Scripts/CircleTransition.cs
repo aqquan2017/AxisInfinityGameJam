@@ -18,6 +18,9 @@ public class CircleTransition : MonoBehaviour
     [SerializeField] private float _delayTime = 0.3f;
     [SerializeField] private bool _isStop1Time = true;
 
+    public event Action OnGlobalFadeOut;
+    public event Action OnGlobalFadeIn;
+
     private void Awake()
     {
         Instance = this;
@@ -92,6 +95,8 @@ public class CircleTransition : MonoBehaviour
     [ContextMenu("Fade out")]
     public void FadeOut(Action onStartFadeOut = null, Action onMidFadeOut = null, Action onEndFadeOut = null)
     {
+        OnGlobalFadeOut?.Invoke();
+
         onStartFadeOut?.Invoke();
         DrawBlackCircle();
         float startVal = 0;
@@ -116,6 +121,8 @@ public class CircleTransition : MonoBehaviour
     [ContextMenu("Fade in")]
     public void FadeIn(Action onStartFadeIn = null, Action onMidFadeIn = null, Action onEndFadeIn = null)
     {
+        OnGlobalFadeIn?.Invoke();
+
         onStartFadeIn?.Invoke();
         DrawBlackCircle();
         float startVal = 1f;
