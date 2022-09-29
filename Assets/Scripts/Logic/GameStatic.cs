@@ -28,6 +28,7 @@ public class GameStatic : BaseManager<GameStatic>
     private void Awake()
     {
         Mixer.Init();
+        Application.targetFrameRate = 90;
 
         AnimationMapper = new Dictionary<AnimationState, string>()
         {
