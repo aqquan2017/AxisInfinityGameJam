@@ -31,17 +31,36 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_canMove || _gameOver || _axieFigure == null)
             return;
-        Movement();
+#if UNITY_EDITOR
+        Movement(GetInput());
+#endif
     }
 
+       
     public void PlayerFrozen()
     {
         _gameOver = true;
     }
 
-    void Movement()
+    public void MoveLeft()
     {
-        Vector2 direction = GetInput(); 
+        Movement(Vector2.left);
+    }
+    public void MoveRight()
+    {
+        Movement(Vector2.right);
+    }
+    public void MoveUp()
+    {
+        Movement(Vector2.up);
+    }
+    public void MoveDown()
+    {
+        Movement(Vector2.down);
+    }
+
+    void Movement(Vector2 direction)
+    {
         if (direction != Vector2.zero)
         {
             SoundManager.Instance.Play(Sounds.UI_POPUP);
