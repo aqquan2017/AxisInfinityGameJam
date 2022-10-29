@@ -9,7 +9,7 @@ public class SceneController : BaseManager<SceneController>
 {
     private int _currentScene = 0;
     public int CurrentScene => _currentScene;
-    public event Action<int> OnChangeScene;
+    public event Action<int, int> OnChangeScene;
 
     public override void Init()
     {
@@ -19,7 +19,7 @@ public class SceneController : BaseManager<SceneController>
     void OnLoadScene(Scene cur, Scene next)
     {
         Debug.Log("SCENE" + " cur " + "START");
-        OnChangeScene?.Invoke(next.buildIndex);
+        OnChangeScene?.Invoke(cur.buildIndex, next.buildIndex);
     }
 
     private void OnDestroy()
@@ -27,17 +27,16 @@ public class SceneController : BaseManager<SceneController>
         SceneManager.activeSceneChanged -= OnLoadScene;
     }
 
-    public void ChangeScene(int id, float timeWait =1f)
+    public void ChangeScene(int sceneId, float timeWait =1f)
     {
-        if(id >= SceneManager.sceneCountInBuildSettings)
+        if(sceneId >= SceneManager.sceneCountInBuildSettings)
         {
             LogSystem.LogError("SCENE LOAD OUT OF BOUND");
             return;
         }
         
-        _currentScene = id;
-        OnChangeScene?.Invoke(_currentScene);
-        SceneManager.LoadScene(_currentScene);
+        SceneManager.LoadScene(sceneId);
+        _currentScene = sceneId;
     }
 
     public void NextScene(float timeWait = 1)

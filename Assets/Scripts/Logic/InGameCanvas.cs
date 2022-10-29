@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InGameCanvas : MonoBehaviour
+public class InGameCanvas : BasePanel
 {
     public Text _levelText;
     public Button _howToPlayBtn;
@@ -38,7 +38,6 @@ public class InGameCanvas : MonoBehaviour
     }
     void OnRewind()
     {
-            
         SoundManager.Instance.Play(Sounds.UI_POPUP);
     }
     
@@ -52,5 +51,10 @@ public class InGameCanvas : MonoBehaviour
     {
         UIManager.Instance.ShowPanelWithDG(typeof(ExitToMainMenuPanel));
         SoundManager.Instance.Play(Sounds.UI_POPUP);
+    }
+
+    public override void OverrideText()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AxieMixer.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -120,6 +121,11 @@ public class GameStatic : BaseManager<GameStatic>
         SceneController.Instance.ChangeScene(1);
     }
 
+    private void OnDestroy()
+    {
+        SceneController.Instance.OnChangeScene -= OnChangeScene;
+    }
+
     private void Update()
     {
         if (ControlFreak2.CF2Input.GetKeyDown(KeyCode.Escape))
@@ -163,15 +169,23 @@ public class GameStatic : BaseManager<GameStatic>
         }
     }
 
-    private void OnChangeScene(int sceneId)
+    private void OnChangeScene(int fromScene, int toScene)
     {
         CurrentPlayer = GameObject.FindGameObjectWithTag("Player");
         if (CurrentPlayer)
         {
             CircleTransition.Instance._playerPos = CurrentPlayer.transform;
         }
-        if(sceneId > 1)
+
+        if (toScene > 1)
+        {
             CircleTransition.Instance.FadeOut(onMidFadeOut:() => SoundManager.Instance.Play(Sounds.FadeOut));
+            UIManager.Instance.ShowPanel(typeof(InGameCanvas));
+        }
+        else
+        {            
+            UIManager.Instance.HidePanel(typeof(InGameCanvas));
+        }
     }
 
     public override void Init()

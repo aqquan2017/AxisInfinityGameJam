@@ -23,9 +23,9 @@ public class GameplayController : BaseManager<GameplayController>
         SetEvent();
     }
 
-    private void OnLoadScene(int sceneId)
+    private void OnLoadScene(int fromScene, int toScene)
     {
-        if (sceneId > 1)
+        if (toScene > 1)
         {
             SoundManager.Instance.PlaySoundIfNotPlay(Sounds.LevelBGM, true, true, true);
 
@@ -38,7 +38,6 @@ public class GameplayController : BaseManager<GameplayController>
             DataManager.Instance.SaveGame();
 
             OnStartLv?.Invoke();
-            
         }
         else
         {

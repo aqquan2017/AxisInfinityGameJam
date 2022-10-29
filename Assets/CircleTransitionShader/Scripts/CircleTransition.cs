@@ -37,6 +37,11 @@ public class CircleTransition : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void OnDestroy()
+    {
+        _image.material.SetFloat("_Radius", 1);
+    }
+
     private void Update()
     {
         // //test input
