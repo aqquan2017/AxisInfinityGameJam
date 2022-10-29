@@ -132,6 +132,6 @@ public class EnemyController : MonoBehaviour, IInteractObject
         var deadFX = Pooling.Instantiate(deadVFX, spawnVfx.position, spawnVfx.rotation);
         TimerManager.Instance.AddTimer(0.9f, () => deadFX.Play());
         SoundManager.Instance.Play(Sounds.ENEMY_DEAD);
-        Destroy(transform.gameObject, 1.5f);
+        Pooling.Destroy(transform.gameObject, 1.5f);
     }
 }

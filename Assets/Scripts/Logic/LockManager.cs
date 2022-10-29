@@ -22,7 +22,7 @@ public class LockManager : MonoBehaviour, ITriggerObject, ILockMechanic
             var playerHitVFX = Pooling.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation); 
             playerHitVFX.Play();
             
-            Destroy(gameObject);
+            Pooling.Destroy(gameObject);
         }
     }
 }

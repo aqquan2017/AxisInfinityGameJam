@@ -25,16 +25,16 @@ public class WinGameTrigger : MonoBehaviour, ITriggerObject
             triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, true);
             
             
-            var playerHitVFX = Instantiate(_winVFX, _spawnVfx.position + Vector3.up * 0.8f, _spawnVfx.rotation);
+            var playerHitVFX = Pooling.Instantiate(_winVFX, _spawnVfx.position + Vector3.up * 0.8f, _spawnVfx.rotation);
             playerHitVFX.Play();
-            var playerHitVFX1 = Instantiate(_winVFX, _spawnVfx.position + Vector3.down * 0.8f, _spawnVfx.rotation);
+            var playerHitVFX1 = Pooling.Instantiate(_winVFX, _spawnVfx.position + Vector3.down * 0.8f, _spawnVfx.rotation);
             playerHitVFX1.Play();
-            var playerHitVFX2 = Instantiate(_winVFX, _spawnVfx.position + Vector3.left * 0.8f, _spawnVfx.rotation);
+            var playerHitVFX2 = Pooling.Instantiate(_winVFX, _spawnVfx.position + Vector3.left * 0.8f, _spawnVfx.rotation);
             playerHitVFX2.Play();
-            var playerHitVFX3 = Instantiate(_winVFX, _spawnVfx.position + Vector3.right * 0.8f, _spawnVfx.rotation);
+            var playerHitVFX3 = Pooling.Instantiate(_winVFX, _spawnVfx.position + Vector3.right * 0.8f, _spawnVfx.rotation);
             playerHitVFX3.Play();
             GameStatic.Instance.OnWinGame();
-            Destroy(gameObject);
+            Pooling.Destroy(gameObject);
         }
     }
 }
