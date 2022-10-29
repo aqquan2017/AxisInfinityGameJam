@@ -17,7 +17,7 @@ public class KeyController : MonoBehaviour, ITriggerObject
             
             playerKeyLock.SetHaveKey();
             
-            var playerHitVFX = Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation);
+            var playerHitVFX = Pooling.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation);
             playerHitVFX.Play();
             
             Destroy(gameObject);

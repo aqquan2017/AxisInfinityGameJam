@@ -74,14 +74,14 @@ public class TrapBehaviour : MonoBehaviour, ITriggerObject
             string animName = Random.value > 0.5f ? "battle/get-debuff" : "defense/hit-by-normal-crit";
             triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, false);
             SoundManager.Instance.Play(Sounds.PlayerTakeDamage);
-            var playerHitVFX = Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation);
+            var playerHitVFX = Pooling.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation);
             playerHitVFX.Play();
         }
 
         if (triggerObj.TryGetComponent(out EnemyController enemyController))
         {
             //make it dead
-            var playerHitVFX = Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation);
+            var playerHitVFX = Pooling.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation);
             playerHitVFX.Play();
             enemyController.Die();
         }

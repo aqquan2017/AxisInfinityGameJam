@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             if (CanMove(direction, ref OnDoLater))
             {
                 _canMove = false;
-                var moveVFX = Instantiate(_moveParticle, _vfxSpawn.position, _vfxSpawn.rotation);
+                var moveVFX = Pooling.Instantiate(_moveParticle, _vfxSpawn.position, _vfxSpawn.rotation);
                 moveVFX.Play();
                 
                 transform.DOMove((Vector2)transform.position + direction, 0.1f).OnComplete(() =>

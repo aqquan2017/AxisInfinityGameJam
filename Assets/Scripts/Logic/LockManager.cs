@@ -19,7 +19,7 @@ public class LockManager : MonoBehaviour, ITriggerObject, ILockMechanic
             string animName = "battle/get-buff";
             triggerObj.transform.GetComponent<PlayerMovement>()._axieFigure.SetAnimation(animName, 1.5f, false);
             SoundManager.Instance.Play(Sounds.LOCK);
-            var playerHitVFX = GameObject.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation); 
+            var playerHitVFX = Pooling.Instantiate(_playerHit, _playerHitVfxSpawn.position, _playerHitVfxSpawn.rotation); 
             playerHitVFX.Play();
             
             Destroy(gameObject);
